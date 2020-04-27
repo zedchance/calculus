@@ -1,0 +1,429 @@
+\documentclass{article}
+
+\usepackage{mathtools}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=black
+}
+
+\title{Sequences and Series}
+\date{2020-04-26}
+\author{Zed Chance}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{What is a series?}
+    To evaluate series, first find the partial sum:
+    \begin{align*}
+        \sum_{n=1}^\infty & n \\
+        S_n = 1 +  2 & + 3 +\  ...\  + n
+    \end{align*}
+    Find the formula for $S_n$
+    $$
+    S_n= \frac{n(n+1)}{2}
+    $$
+    Take the limit as $n \rightarrow \infty$
+    $$
+    \lim_{n \rightarrow \infty} \frac{n(n+1)}{2} = \infty
+    $$
+
+\section{Telescoping series}
+    These series look like two repeating fractions that end up canceling everything except something from the first term and something from the last. For example:
+    $$
+    \sum_{n=1}^{\infty} \Big (\frac{1}{2n+3} - \frac{1}{2n+1}\Big )
+    $$
+    First find the partial sum $S_n$
+    $$
+    S_n = \Big ( \frac{1}{5}-\frac{1}{3}\Big ) + \Big ( \frac{1}{7}-\frac{1}{5}\Big ) + \Big ( \frac{1}{9}-\frac{1}{7}\Big ) + \ ...\ \\
+    +\ \Big ( \frac{1}{2n+1}-\frac{1}{2n-1}\Big ) + \Big ( \frac{1}{2n+3}-\frac{1}{2n+1}\Big )
+    $$
+    Almost all of these fractions will cancel if you see the patern. The only 2 left are:
+    $$
+    S_n = - \frac{1}{3} + \frac{1}{2n+3}
+    $$
+    Take the limit of this partial sum $S_n$
+    $$
+    \lim_{n \rightarrow \infty}\big[ - \frac{1}{3} + \frac{1}{2n+3} \big] = - \frac{1}{3}
+    $$
+
+\section{Geometric series}
+    Geometric series take the form of:
+    $$\sum_{n=1}^\infty ar^{n-1}$$
+    The series will converge of $\big|r\big|< 1$, otherwise it will diverge.
+    If the sum does converge, the sum is:
+    $$\sum_{n=1}^\infty ar^{n-1} = \frac{a}{1-r}$$
+    \subsection{Shortcut}
+        If the first power of the sequence is 0 then the first term is $a$. $a$ stands for the first term in your series.
+        For example:
+        \begin{align*}
+            \sum_{n=1}^{\infty} \Big ( \frac{2}{3} \Big )^n & = \sum_{n=1}^{\infty} \Big ( \frac{2}{3} \Big )\Big ( \frac{2}{3} \Big )^{n-1} \\
+            & = \frac{\frac{2}{3}}{1-\frac{2}{3}}
+        \end{align*}
+        Another example:
+        \begin{align*}
+            \sum_{n=2}^{\infty} \frac{e^n}{3^{n+1}} & = \sum_{n=2}^{\infty} \frac{e^n}{3\cdot 3^n} \\
+            & = \sum_{n=2}^{\infty} \frac{1}{3} \Big( \frac{e}{3}\Big)^n
+        \end{align*}
+        The mistake most people make here is thinking that $a = \frac{1}{3}$. This isn't the case because plugging in $n=2$ doesn't make the first exponent 0. So split off more $\frac{e}{3}$'s to make it in the right form:
+        \begin{align*}
+            & = \sum_{n=2}^{\infty} \frac{1}{3} \Big( \frac{3}{3} \Big)^2 \Big( \frac{e}{3} \Big) ^{n-2} \\
+            & = \sum_{n=2}^{\infty} \frac{e^2}{27} \Big( \frac{e}{3} \Big) ^{n-2}
+        \end{align*}
+        Now since the first term makes the exponent go to 0. You can tell what $a$ and $r$ are now. So:
+        $$
+        = \frac{ \frac{e^2}{27} }{1- \frac{e^2}{3}}
+        $$
+        So the shortcut here is that you can start with
+        $$
+        = \sum_{n=2}^{\infty} \frac{1}{3} \Big( \frac{e}{3}\Big)^n
+        $$
+        and simply plug in 2 for $n$ (the starting point). Since we know that the first term is $a$ you can jump to the answer:
+        $$
+        = \frac{ \frac{e^2}{27} }{1- \frac{e^2}{3}}
+        $$
+
+\section{Harmonic}
+    Harmonc series are defined as:
+    $$
+    \sum_{n=1}^{\infty} \frac{1}{n} = \frac{1}{1} + \frac{1}{2} + \frac{1}{3} +\ ...\ + \frac{1}{n}
+    $$
+    Harmonic series are divergent. If a sequence $\{a_n\}$ is convergent, any subsequence of $\{a_n\}$ must also be convergent. To show that a sequence $\{a_n\}$ diverges, it is enough to show that a subsequence diverges.
+    \textbf{Note}: If a series converges, then
+    $$
+    \sum_{n=1}^{\infty} a_n \\
+    \lim_{n \rightarrow \infty}^{} a_n = 0
+    $$
+    So to show a series diverges, it's enough to show:
+    $$
+    \lim_{n \rightarrow \infty} a_n \neq 0
+    $$
+    If the limit doesn't equal 0, or $DNE$, the series $\{a_n\}$ diverges.
+    Remember! The limit equaling 0 does \textbf{NOT} necessarily mean convergence!
+    \subsection{Example}
+        \begin{align*}
+            \sum_{n=1}^{\infty}& \frac{2n^2-1}{3n^2-1} \\
+            \lim_{n \rightarrow \infty}& \frac{2n^2-1}{3n^2-1} \neq 0
+        \end{align*}
+        Diverges because the limit equals 0!
+
+\section{P-Series}
+    $$
+    \sum_{n=1}^\infty \frac{1}{n^P}
+    $$
+    When $P < 1$ the series will diverge. 
+    $$
+    \lim_{n \rightarrow \infty} \frac{1}{n^P}
+    $$
+    When $P > 1$ the series will converge (can be shown with the integral test).
+    \subsection{Example}
+        $$
+        \sum_{n=1}^{\infty} \frac{1}{n^2}
+        $$
+        Here we can see that $P = 2$ (greater than 1), so the series must converge.
+    \subsection{Example}
+        $$
+        \sum_{n=1}^\infty \frac{1}{\sqrt[3]{n}}
+        $$
+        Here we can see that $P = \frac{1}{3}$ (less than 1), so the series diverges.
+    \subsection{Example}
+        $$
+        \sum_{n=1}^\infty n^{-\pi} = \sum_{n=1}^\infty \frac{1}{n^\pi}
+        $$
+        Since $P = \pi$ (greater than 1) the series must converge.
+
+\section{Properties of convergent series}
+    1. You can always pull a constant out in front of the series
+    $$
+    \sum_{n=1}^{\infty} C a_n = C \sum_{n=1}^{\infty} a_n
+    $$
+    2. You can split sequences on sums or differences
+    $$
+    \sum_{n=1}^{\infty} (a_n \pm b_n) = \sum_{n=1}^{\infty} a_n \pm \sum_{n=1}^{\infty} b_n
+    $$
+    \subsection{Example}
+        \begin{align*}
+            \sum_{n=1}^{\infty} \Big ( \frac{2^n-5^n}{3^n}\Big ) & =\sum_{n=1}^{\infty} \Big ( \frac{2^n}{3^n} - \frac{5^n}{3^n}\Big ) \\
+            & =\sum_{n=1}^{\infty} \frac{2^n}{3^n} - \sum_{n=1}^{\infty} \frac{5^n}{3^n}
+        \end{align*}
+        If we split this sequence into parts, each part much be convergent for the entire sequence to be convergent! If any single part is divergent then the entire thing is divergent.
+        $$
+        =\sum_{n=1}^{\infty} \Big (\frac{2}{3}\Big )^n - \sum_{n=1}^{\infty} \Big (\frac{5}{3}\Big )^n
+        $$
+        In this form we can evaluate them as geometric series. Automatically we know this is divergent because the rightmost fraction's $r$ is greater than 1. Since a subsequence of the original diverges, the original does too.
+
+\section{Integral test}
+    For $f(n) = a_n$, if $f(n)$ is continous, positive, and decreasing, then we can use the integral to show convergence/divergence of our series. 
+    So:
+    $$
+    \sum_{n=1}^\infty \text{ and } \int_1^\infty f(x)\ dx
+    $$
+    will have the same result (either converge or diverge).
+    \begin{itemize}
+        \item This can tell you convergence/divergence, but does not necessarily give the sum of the series.
+        \item Convergence is \textbf{not} affected by the addition or subtraction of a \textbf{finite} number of terms from our series. 
+    \end{itemize}
+    We can judge the convergence of $\sum_{n=1}^\infty a_n$ with:
+    $$
+    \sum_{n=1}^\infty a_n \text{ or } \int_1^\infty f(x)\ dx
+    $$
+    But to do the integral test, we can start the integral at $N$, the sum of our integral will not be the sum of the series, but we can at least tell if it converges/diverges.
+    $$
+    \int_N^\infty f(x)\ dx
+    $$
+    \subsection{Example}
+        $$
+        \sum_{n=1}^\infty \frac{1}{n^2+1}
+        $$
+        First thing first, you should check the divergence by taking the limit. The limit here equals 0, so it fails the divergence test. (It may be divergent some other way, but we don't know. It may be convergent, but we don't know). It's not telescoping, its not factorable, so lets try the integral test.
+        $$
+        f(x) = \frac{1}{x^2+1}
+        $$
+        This should act as an upper bound for our sequence provided its always positive, continuous, and decreasing on it's interval $[1, \infty)$. If it meets these requirements then we can do the integral test:
+        $$
+        \int_1^\infty \frac{1}{x^2+1} dx
+        $$
+        This is an improper integral:
+        \begin{align*}
+            \lim_{b \rightarrow \infty} \int_1^b \frac{1}{x^2+1} dx & = \lim_{b \rightarrow \infty} \Big[ \tan^{-1}x \Big]_1^b \\
+            & = \lim_{b \rightarrow \infty} \Big[ \tan^{-1}b - \tan^{-1}1 \Big] \\
+            & = \frac{\pi}{2} - \frac{\pi}{4} \\
+            & = \frac{\pi}{4}
+        \end{align*}
+        Since we got a number, that shows that the series must converge! \textbf{Our answer from the integral is not necessarily the sum of the series!}
+    
+    \subsection{Example}
+        $$
+        \sum_{n=1}^\infty \frac{3}{2n-1}
+        $$
+        Try the divergence test first. The limit is 0 so it doesn't automatically diverge. 
+        The integral test:
+        $$
+        f(x) = \frac{3}{2x-1}
+        $$
+        It isn't always positive, but it is on our interval $[1, \infty)$. It is continuous on our interval and it is also decreasing, so lets try the integral test.
+        \begin{align*}
+            \int_1^\infty \frac{3}{2x-1} & = \lim_{b \rightarrow \infty} \int_1^b \frac{3}{2x-1} \\
+            && u = 2x-1 \\ && du = 2dx \\
+            & = \lim_{b \rightarrow \infty} \frac{3}{2} \int \frac{1}{u} du \\
+            & = \lim_{b \rightarrow \infty} \frac{3}{2} \ln \ \big[2x-1\big]_1^b \\
+            & = \frac{3}{2} \lim_{b \rightarrow \infty} \big[ \ln(2b-1) - \ln(2-1) \big] \\
+            & = \infty
+        \end{align*}
+        Since the limit evaluates to $\infty$ the integral diverges. So the series also diverges.
+    
+    \subsection{Example}
+        \begin{align*}
+            \sum_{n=1}^\infty \frac{\ln n}{n} \\
+            f(x) = \frac{\ln x}{x}
+        \end{align*}
+        The function is positive and continuous. To show decreasing show that $f'(x) < 0$:
+        \begin{align*}
+            f'(x) & = \frac{1 - \ln x}{x^2} \\
+            1 & \leq \ln x \\
+            e & \leq x
+        \end{align*}
+        Choose a interval where $f(x)$ will be decreasing. $f(x)$ will certainly be decreasing on the interval $[3, \infty)$.
+        So:
+        \begin{align*}
+            \int_3^\infty \frac{\ln x}{x} & = \lim_{b \rightarrow \infty} \int_3^b \frac{\ln x}{x} dx \\
+            && u = \ln x \\
+            && du = \frac{1}{x} dx \\
+            & = \lim_{b \rightarrow \infty} \int_3^b u\ du \\
+            & = \lim_{b \rightarrow \infty} \big[ \frac{1}{2} (\ln x)^2\big]_3^b \\
+            & = \lim_{b \rightarrow \infty} \big[ \frac{1}{2} (\ln b)^2 - \frac{1}{2} (\ln 3)^2 \big] \\
+            & = \infty
+        \end{align*}
+        Therefore, the integral diverges. So the series also diverges.
+
+    \subsection{Example}
+        $$
+        \sum_{n=1}^\infty \frac{e^\frac{1}{n}}{n^2}
+        $$
+        First do the divergence test, the limit is 0 so it doesn't immediately diverge. Its not a geometric series. Its also not a P-series. Let's try the integral test.
+        $$
+        f(x) = \frac{e^\frac{1}{x}}{x^2}
+        $$
+        The function must be positive, continuous, and decreasing on the interval. The function is positive. Its only discontinuous at 0 and thats not in our interval. To show decreasing make sure $f'(x) < 0$ (alternatively you could show that $a_{n-1} < a_n$):
+        \begin{align*}
+            f'(x) & = \frac{-e^\frac{1}{x}-2xe^\frac{1}{x}}{x^4} \\
+            & = \frac{-e^\frac{1}{x}(1+2x)}{x^4} \\
+        \end{align*}
+        This is negative on our interval $[1, \infty)$.
+        So lets do the integral test:
+        \begin{align*}
+            \int_1^\infty \frac{e^\frac{1}{x}}{x^2} dx & = \lim_{b \rightarrow \infty} \int_1^b \frac{e^\frac{1}{x}}{x^2} dx \\
+            && u & = \frac{1}{x} \\
+            && du & = - \frac{1}{x^2} dx \\
+            & = - \lim_{b \rightarrow \infty} \int_1^b e^u du \\
+            & = - \lim_{b \rightarrow \infty} \big[ e^\frac{1}{x}\big]_1^b \\
+            & = - \lim_{b \rightarrow \infty} \big[ e^\frac{1}{b} - e^1 \big] \\
+            & = - [1 - e] \\
+            & = e - 1
+        \end{align*}
+        Therefore since the integral converges, the series must converge also.
+
+\section{Comparison tests}
+    Idea: Compare one series to another with a known convergence/divergence (geometric, harmonic, p-series, etc). 
+    Suppose we have two series $\sum a_n$ and $\sum b_n$ \textbf{with positive terms}:
+    \begin{itemize}
+        \item If $a_b < b_n$ for all $n$, and $\sum b_n$ converges, then $\sum a_n$ also converges.
+        \item If $a_b > b_n$ for all $n$, and $\sum b_n$ diverges, then $\sum a_n$ also diverges.
+    \end{itemize}
+    If you show divergence for $b_n$ when $a_n < b_n$, it proves nothing. The upper series diverges up to infinity and that tells us nothing about the lower series. It may diverge or converge. So make sure to show the correct comparison. (The same useless comparison is showing convergence for $b_n$ when $a_n > b_n$).
+
+    \subsection{Example}
+        $$
+        \sum_{n=1}^\infty \frac{1}{n^2+2}
+        $$
+        First check if it fails divergence test, look for other known series, see if integral test could work (it would), but theres a better way. Consider this comparison:
+        $$
+        0 \leq \frac{1}{n^2+2} \leq \frac{1}{n^2}
+        $$
+        If we're trying to show convergence, we need this to be less than something we know convergence for.
+        So lets show convergence of $\frac{1}{n^2}$:
+        $$
+        \sum_{n=1}^\infty \frac{1}{n^2}
+        $$
+        This is a P-series with $p=2$, and since our $p >1$ it means the series converges. This means by the comparison test that the original problem also converges.
+
+    \subsection{Example}
+        $$
+        \sum_{n=1}^\infty \frac{1}{3+2^n}
+        $$
+        All the terms are positive on the interval, consider this comparison:
+        $$
+        0 \leq \frac{1}{3+2^n} \leq \frac{1}{2^n}
+        $$
+        So try to determine convergence of the rightmost fraction:
+        \begin{align*}
+            \sum_{n=1}^\infty \frac{1}{2^n} & = \sum_{n=1}^\infty \Big( \frac{1}{2} \Big)^n \\
+            & = \sum_{n=1}^\infty \Big( \frac{1}{2} \Big) \Big( \frac{1}{2}\Big)^{n-1}
+        \end{align*}
+        This is a geometric sum with $a = \frac{1}{2}$ and $r = \frac{1}{2}$, therefore since $r < 1$ this will converge. So by the comparison test the original problem also converges.
+
+    \subsection{Example}
+        $$
+        \sum_{n=3}^\infty \frac{3^n}{2^n-4}
+        $$
+        All the terms on the interval are positive, so lets try a comparison:
+        $$
+        \frac{3^n}{2^n - 4} \geq \frac{3^n}{2^n}
+        $$
+        We're trying to show divergence of the rightmost fraction, and that will show that the original also diverges.
+        \begin{align*}
+            \sum_{n=3}^\infty \frac{3^n}{2^n} & = \sum_{n=3}^\infty \Big( \frac{3}{2} \Big)^n \\
+            & = \sum_{n=3}^\infty \Big( \frac{3}{2} \Big)^3 \Big( \frac{3}{2} \Big)^{n-3}
+        \end{align*}
+        Since this is a geometric and our $r > 1$, it diverges. Therefore the original problem diverges.
+
+    \subsection{Example}
+        $$
+        \sum_{n=1}^\infty \frac{1}{\sqrt{n} + 1}
+        $$
+        Consider this comparison:
+        $$
+        0 \leq \frac{1}{\sqrt{n}+1} \leq \frac{1}{\sqrt{n}}
+        $$
+        This is a P-series with $p = \frac{1}{2}$ (less than 1). This means it diverges. This shows nothing about the original problem!
+        When you can't use a comparison like this, you can use the limit comparison test.
+
+\section{Limit comparison test}
+    Idea: If $\sum a_n$ and $\sum b_n$ have \textbf{positive terms}, and this limit exists:
+    $$
+    \lim_{n \rightarrow \infty} \frac{a_n}{b_n}
+    $$
+    then that means that both terms are so close together their behavior matches. That means that both series either converge or diverge.
+    If it goes to infinity then the terms must difference enough that one or both of them diverges. 
+
+    \subsection{Proof}
+        Suppose this limit exists:
+        $$
+        \lim_{n \rightarrow \infty} \frac{a_n}{b_n} = L
+        $$
+        Then by definition:
+        $$
+        \Big| \frac{a_b}{b_n} - L \Big| < \epsilon
+        $$
+        So:
+        \begin{align*}
+            -\epsilon L <  &\frac{a_b}{b_n} - L  < \epsilon L \\
+            L-\epsilon L <  &\frac{a_b}{b_n} < L + \epsilon L \\
+            (1-\epsilon)L \cdot b_n < &a_n < (1+ \epsilon)L \cdot b_n
+        \end{align*}
+        $(1+ \epsilon)L$ is just a constant (doesn't affect the convergence/divergence of the series), so if $b_n$ converges $a_n$ is less than that so it also converges. If $b_n$ diverges, then $a_n$ is greater than that so it also diverges.
+
+    \subsection{Example}
+        So to take a look again at Example 4 above:
+        $$
+        \sum_{n=1}^\infty \frac{1}{\sqrt{n} + 1}
+        $$
+        Lets try the limit comparison test where:
+        $$
+        \lim_{n \rightarrow \infty} \frac{a_n}{b_n}
+        $$
+        and
+        $$
+        b_n = \frac{1}{\sqrt{n}}
+        $$
+        So:
+        \begin{align*}
+            \lim_{n \rightarrow \infty} \frac{\frac{1}{\sqrt{n} + 1}}{\frac{1}{\sqrt{n}}} & = \lim_{n \rightarrow \infty} \frac{1}{\sqrt{n} + 1} \cdot \frac{\sqrt{n}}{1} \\
+            & = \lim_{n \rightarrow \infty} \frac{\sqrt{n}}{\sqrt{n} + 1} \\
+            & = \lim_{n \rightarrow \infty} \frac{1}{1 + \frac{1}{\sqrt{n}}} \\
+            & = 1
+        \end{align*}
+        Since our limit exists, $a_n$ and $b_n$ are so close together, that if one converges the other must also. If one diverges the other must also. Just because the limit exists it doesn't mean they converge! They will just have the same result. 
+        Now we know that $b_n$ diverges (p-series with $p < 1$), it means the $a_n$ does also!
+
+    \subsection{Example}
+        $$
+        \sum_{n=1}^\infty \frac{2n^2+n}{\sqrt{4n^7+3}}
+        $$
+        Lets choose a $b_n$ that we know convergence/divergence. Start by trying a $b_n$ that models the end behavior of $a_n$:
+        \begin{align*}
+            \sum_{n=1}^\infty \frac{2n^2}{\sqrt{4n^7}} & = \sum_{n=1}^\infty \frac{1}{n^{3/2}}
+        \end{align*}
+        This is a P-series with a $p = \frac{3}{2}$, since $p > 1$ it converges!
+        Limit comparison test:
+        \begin{align*}
+            \lim_{n \rightarrow \infty} \frac{a_n}{b_n} & = \lim_{n \rightarrow \infty} \frac{\frac{2n^2+n}{\sqrt{4n^7+3}}}{\frac{1}{n^{3/2}}} \\
+            & = \lim_{n \rightarrow \infty} \frac{2n^2+n}{\sqrt{4n^7+3}} \cdot n^{3/2} \\
+            & = \lim_{n \rightarrow \infty} \frac{2n^{7/2} + n^{5/2}}{\sqrt{4n^7+3}} \\
+            & = \lim_{n \rightarrow \infty} \frac{2 + \frac{1}{n}}{\sqrt{4 + \frac{3}{n^7}}} \\
+            & = 1
+        \end{align*}
+        Since we know the limit exists, and we know that $b_n$ converges, $a_n$ must converge also!
+
+    \subsection{Example}
+    $$
+    \sum_{n=1}^\infty \frac{\sqrt{n} + \ln n}{n^2 + 1}
+    $$
+    Lets use the limit comparison test, and compare to $b_n$ of:
+    \begin{align*}
+        b_n & = \sum_{n=1}^\infty \frac{\sqrt{n}}{n^2} \\
+        & = \sum_{n=1}^\infty \frac{1}{n^{3/2}}
+    \end{align*}
+    This is a P-series with $p = \frac{3}{2}$, so $b_n$ converges ($p > 1$).
+    Limit comparison test:
+    \begin{align*}
+        \lim_{n \rightarrow \infty} \frac{\sqrt{n} + \ln n}{n^2 + 1} \cdot n^{3/2} & = \lim_{n \rightarrow \infty} \frac{n^2 + n^{3/2} \ln n}{n^2 + 1} \\
+        & = \lim_{n \rightarrow \infty} \frac{1 + \frac{\ln n}{n^{1/2}}}{1 + \frac{1}{n^{2}}} \\
+        && \text{Aside:} \\
+        && = \lim_{n \rightarrow \infty} \frac{\ln n}{n^{1/2}} \\
+        && \text{Use L'Hospitals} \\ 
+        && = \lim_{n \rightarrow \infty} \frac{\frac{1}{n}}{\frac{1}{2\sqrt{n}}} \\
+        && = \lim_{n \rightarrow \infty} \frac{2\sqrt{n}}{n} \\
+        && \text{Use L'Hospitals} \\
+        && = \lim_{n \rightarrow \infty} \frac{2}{\sqrt{n}} \\
+        && = 0 \\
+        & = \lim_{n \rightarrow \infty} \frac{1 + 0}{1 + 0} \\
+        & = 1
+    \end{align*}
+    So since the series $b_n$ converges, the series $a_n$ also converges.
+
+\end{document}
