@@ -9,7 +9,7 @@
 }
 
 \title{Sequences and Series}
-\date{2020-04-26}
+\date{Calculus II\\Spring 2020}
 \author{Zed Chance}
 
 \begin{document}
@@ -425,5 +425,296 @@
         & = 1
     \end{align*}
     So since the series $b_n$ converges, the series $a_n$ also converges.
+
+\section{Alternating series test}
+    Simply a series where sequential terms alternate signs (positive, negative...). 
+    \[\sum_{n = 1}^{\infty} \frac{(-1)^{n-1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + ... \]
+    All of these series can be written as:
+    \[\sum_{n = 1}^{\infty}  (-1)^{n-1} \cdot a_n\]
+    \[\sum_{n = 1}^{\infty} (-1)^{n-1} \cdot \frac{1}{n}\]
+    This is basically an alternating Harmonic series.\\
+    \\
+    The test goes like this:
+    \begin{itemize}
+        \item Verify that it is alternating
+        \item Look at the limit of sequence of the positive terms \(a_n\)
+        \item If the sequence is also decreasing, then its convergent. (It just needs to pass the divergence test as far as the sequence of positive terms is concerned.)
+    \end{itemize}
+    Ultimately if the series converges it is bracketing the value that it is trending to.
+    \subsection{Example}
+        \[\sum_{n = 1}^{\infty}  \frac{(-1)^n \cdot n^2}{(n+1)!} = -\frac{1}{2!} + \frac{4}{3!} - \frac{9}{4!} + \frac{16}{5!} - ... \]
+        This is basically the same as:
+        \[\sum_{n = 1}^{\infty} (-1)^n \cdot a_n \]
+        So heres the test:
+        \[\sum_{n = 1}^{\infty} (-1)^{n-1} \cdot a_n \]
+        If it weren't for the \((-1)^{n-1}\) then all of the \(a_n\) terms would be positive. So you can say that \(a_n > 0\).
+        So if \(a_{n+1} \leq a_n\) for all \(n\) then it shows that the values are decreasing. And:
+        \[\lim_{n \to \infty} a_n  = 0\]
+        The series converges because \(a_n\) is decreasing.
+    
+    \subsection{Example}
+        \[\sum_{n = 1}^{\infty} \frac{(-1)^{n-1}}{n} = \sum_{n = 1}^{\infty} (-1)^{n-1} \cdot \frac{1}{n}\]
+        Break off the alternating factor \((-1)^{n-1}\) and it reveals that \(a_n = \frac{1}{n}\). 
+        First check the divergence test on the positive terms of \(a_n\):
+        \[\lim_{n \to \infty} \frac{1}{n} = 0\]
+        Show that the terms are decreasing (\(a_{n+1} \leq a_n\)):
+        \[a_{n+1} = \frac{1}{n+1} \leq \frac{1}{n} = a_n\]
+        \[a_{n+1} \leq a_n\]
+        Therefore by the alternating series test, because it passes the divergence test and decreasing, the series converges.
+        An interesting point about this example is that the positive terms of \(a_n\) end up being the harmonic series (which diverges), but since it is alternating it ends up converging.
+        
+    \subsection{Example}
+        \[\sum_{n = 1}^{\infty} (-1)^n \cdot \frac{2n}{4n-1} \]
+        Since the alternating factor is broken off of the problem for us its easy to see that:
+        \[a_n = \frac{2n}{4n-1}\]
+        First try the divergence test:
+        \[\lim_{n \to \infty} \frac{2n}{4n-1} = \frac{1}{2}\]
+        Since the limit exists, it fails the divergence test, thus it diverges.
+        
+    \subsection{Example}
+        \[\sum_{n=2}^{\infty} \frac{(-1)^{n-1} \sqrt{n+1}}{n-1}\]
+        Isolate \(a_n\):
+        \[a_n = \frac{\sqrt{n+1}}{n-1}\]
+        Check the divrgence test:
+        \[\lim_{n \to \infty} \frac{\sqrt{n+1}}{n-1} = 0\]
+        Now to show decreasing lets take the derivative:
+        \[f(x) = \frac{\sqrt{x+1}}{x-1}\]
+        \[f'(x) = \frac{-x-3}{2\sqrt{x+1}(x-1)^2}\]
+        Since \(f'(x) < 0\) it shows that \(a_n\) is decreasing. So by the alternating series test, the given series converges.
+    
+    \subsection{Finding error on our series}
+        If \(\sum a_n\) converges, then it will have a sum \(S\). The limit of the partial sums = \(S\).
+        \[\lim_{n \to \infty}  S_n = S\]
+        If thats true, then the difference between these should be 0.
+        \[\lim_{n \to \infty} (S - S_n) = 0\]
+        If \(n\) doesn't actually approach \(\infty\), then there will actually be a difference between the two, we call this the error \(R_n\).
+        \[R_n = S - S_n\]
+        This idea is for all series.\\
+        \\
+        The following is for \textbf{alternating series only}:
+        \[|R_n| = |S - S_n| \leq a_{n+1}\]
+        The whole sum \(S\) is:
+        \[S=a_1 - a_2 + a_3 - ... - a_n + a_{n+1} - a_{n+2} + ...\]
+        Whereas the the partial sum \(S_n\) stops at \(a_n\). So the error \(R_n\) is less than or equal to the next term \(a_{n+1}\).
+        To visualize:
+        \[\overbrace{\underbrace{a_1 - a_2 + a_3 - ... - a_n}_{S_n} + \underbrace{a_{n+1} - a_{n+2} + ...}_{S - S_n = R_n}}^{S} \]
+        This finding error test only works for convergent alternating series.
+        
+    \subsection{Example}
+        \[\sum_{n = 0}^{\infty} \frac{(-1)^n}{n!}\]
+        Here we can see that:
+        \[a_n = \frac{1}{n!}\]
+        Check the limit of \(a_n\):
+        \[\lim_{n \to \infty} \frac{1}{n!} \]
+        Now we need to show that \(a_n\) is decreasing:
+        \[a_{n+1} \leq a_n\]
+        \[\frac{1}{(n+1)!} \leq \frac{1}{n!}\]
+        By the alternating series test, the given series must converge. To show error:
+        \[|R_n| = |S - S_n| \leq a_{n+1}\]
+        \[|R_n| \leq \frac{1}{(n+1)!}\]
+        Finding error works by starting with how accurate you want to be, then use \(R_n\) to determine how many terms are needed to be that accurate. For example:
+        \[|R_n| < 0.0005\]
+        \[|R_n| \leq \frac{1}{(n+1)!} < 0.0005\]
+        Then solve for \(n\) (not explicitly):
+        \[(n+1)! > \frac{1}{0.0005}\]
+        \[(n+1)! > 2000\]
+        Start by trying numbers of \(n\) that will be bigger than 2000. So the first term that satisfies the inequality is \(n = 6\)
+        \[S_6 = 1 - 1 + \frac{1}{2} - \frac{1}{6} + \frac{1}{24} - \frac{1}{120}+ \frac{1}{720}\]
+        \[S_6 = 0.368\]
+        This is not equal to \(S\), however it is within 0.0005 \% error.
+
+\section{Absolute convergence}
+    For \(\sum a_n\), if \(\sum |a_n|\) is convergent, then we can say that the given series is \textbf{absolutely convergent}. This is the strongest convergence because
+    if the series \(a_n\) is convergent but \(|a_n|\) is divergent it is called \textbf{conditionally convergent}. So if a series if absolutely convergent
+    you know that the series is also convergent.
+    So for instance:
+    \[\sum_{n = 1}^{\infty} \frac{\sin 2n}{n^2}\]
+    isn't always positive, isn't always decreasing, and isn't alternating (theres a series of terms negative and then a series positive).
+    This is a series we'd want to use absolute convergence on.
+    \[\sum_{n = 1}^{\infty} \left| \frac{\sin 2n}{n^2} \right|\]
+    Remember:
+    \[-1 \leq \sin x \leq 1\]
+    \[| \sin x | \leq 1\]
+    \[| \sin 2x | \leq 1\]
+    So:
+    \[\left| \frac{\sin 2n}{n^2} \right| \leq \frac{1}{n^2}\] 
+    So lets try to evaluate this series to show absolute convergence:
+    \[\sum_{n = 1}^{\infty} \frac{1}{n^2} \]
+    This is a P-series with \(P = 2\) which means it converges because \(P > 1\).
+    By the comparison test that means that the series \(|a_n|\) converges also.
+    Since the series \(|a_n|\) converges, that means that the original series \(a_n\) absolutely converges (which means it also converges).
+    
+    
+    \subsection{Example}
+        \[\sum_{n = 1}^{\infty} \frac{(-1)^{n-1}}{n^2}\]
+        Start by trying the series with the \(|a_n|\).
+        \[\sum_{n = 1}^{\infty} \left| \frac{(-1)^{n-1}}{n^2} \right| = \sum_{n = 1}^{\infty} \frac{1}{n^2} \]
+        This means that it isn't an alternating series anymore. So now it can be seen as a P-series with \(P = 2\). This means that \(|a_n|\) converges.
+        This means that the original series \(a_n\) absolutely converges.
+    
+    \subsection{Example}
+        \[\sum_{n = 1}^{\infty} \frac{(-1)^{n-1}}{n}\]
+        This is the alternating harmonic series which is convergent (shown above). So lets try to show that \(|a_n|\) converges to see if it absolutely converges.
+        \[\sum_{n = 1}^{\infty} \left| \frac{(-1)^{n-1}}{n} \right| = \sum_{n = 1}^{\infty} \frac{1}{n} \]
+        This is a harmonic series which diverges. So this means that the original series \(a_n\) is not absolutely convergent, despite it converging! 
+        This means that the series \(a_n\) is conditionally convergent.
+
+\newpage
+\section{Ratio test}
+    If you can make a ratio between the next term \(a_{n+1}\) and \(a_n\) and the limit of the ratio is less than one:
+    \[\lim_{n \to \infty} \frac{a_{n+1}}{a_n} < 1 \]
+    this tells us that our series \(\sum a_n\) is absolutely convergent.
+    If the ratio is greater than one:
+    \[\lim_{n \to \infty} \frac{a_{n+1}}{a_n} > 1 \]
+    this means that the series \(\sum a_n\) is divergent.
+    If the ratio is equal to one:
+    \[\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = 1 \]
+    this means that the test is inconclusive, which means you'll need to try a different technique.
+    
+    \subsection{Example}
+        \[\sum_{n = 1}^{\infty} \frac{(-1)^{n-1} \cdot n^1 + 1}{2^n} \]
+        This is alternating, and decreasing, so you could use the alternating series test to show its convergence/divergence.
+        But lets try the ratio test:
+        \begin{align*}
+            \lim_{n \to \infty} \frac{a_{n+1}}{a_n} & = \lim_{n \to \infty} \left| \frac{\frac{(-1)^n \cdot (n+1)^2 + 1}{2^{n+1}}}{\frac{(-1)^{n-1} \cdot n^1 + 1}{2^n}} \right| \\
+            & = \lim_{n \to \infty} \frac{(n+1)^2 + 1}{2^{n+1}} \cdot \frac{2^n}{n^2+1} \\
+            & = \lim_{n \to \infty} \frac{n^2+2n+2}{2n^2+2} \\
+            & = \frac{1}{2}
+        \end{align*}
+        So by the ratio test, since the limit of the ratio is less than 1, it tells us that the original series if absolutely convergent.
+    
+    \subsection{Example}
+        \[\sum_{n = 1}^{\infty} \frac{n!}{n^n} \]
+        Lets try the ratio test:
+        \begin{align*}
+            \lim_{n \to \infty} \left| \frac{\frac{(n+1)!}{(n+1)^{n+1}}}{\frac{n!}{n^n}} \right| & = \lim_{n \to \infty} \frac{(n+1)!}{(n+1)^{n+1}} \cdot \frac{n^n}{n!} \\
+            & = \lim_{n \to \infty} \frac{(n+1) \cdot n!}{(n+1)^{n} \cdot (n+1)} \cdot \frac{n^n}{n!} \\
+            & = \lim_{n \to \infty} \frac{n^n}{(n+1)^n} \\
+            & = \lim_{n \to \infty} \left( \frac{n}{n+1} \right)^n \text{(indeterminate form)}\\
+            & = \lim_{n \to \infty} \left( \frac{n+1}{n}\right)^{-n} \\
+            & = \lim_{n \to \infty} \frac{1}{\left( \frac{n+1}{n}\right)^{n}} \\
+            && &\text{Aside:} \\
+            && &\lim_{n \to \infty} \left( \frac{n+1}{n}\right)^{n} \\
+            && &= e^{\lim \left( \frac{n+1}{n}\right)^{n}} \\
+            && &= e^{\lim n \ln \left( \frac{n+1}{n}\right)} \\
+            && &= e^{\lim \frac{\ln \left( \frac{n+1}{n}\right)}{\frac{1}{n}}} \\
+            && &= e^{\lim \frac{1}{1+\frac{1}{n}}} \\
+            && &= e \\
+            \lim_{n \to \infty} \frac{1}{\left( \frac{n+1}{n}\right)^{n}} &= \frac{1}{e}
+        \end{align*}
+       So by the ratio test, the given series is absolutely convergent.
+    
+    \subsection{Example}
+        \[\sum_{n = 1}^{\infty} \frac{(-5)^{n-1}}{n^2 \cdot 3^n} \]
+        First lets setup the ratio test:
+        \begin{align*}
+            \lim_{n \to \infty} \left| \frac{\frac{(-5)^n}{(n+1)^2 \cdot 3^{n-1}}}{\frac{(-5)^{n-1}}{n^2 \cdot 3^n}} \right|
+            &= \lim_{n \to \infty} \frac{5^n}{(n+1)^2 \cdot 3^{n+1}} \cdot \frac{n^2 \cdot 3^n}{5^{n-1}} \\
+            && &\text{Remember:} \\
+            && & 5^n = 5^{n-1} \cdot 5 \\
+            &= \lim_{n \to \infty} \frac{5n^2}{3(n+1)^2} \\
+            &= \lim_{n \to \infty} \frac{5}{3} \left(\frac{n}{n+1}\right)^2 \\
+            &= \frac{5}{3}
+        \end{align*}
+        Since the limit of the ratio is greater than 1, by the ratio test, the series diverges.
+
+\section{Root test}
+    Use the root test when you have \(n\)th powers in your series. There are three outcomes (similar to the ratio test).
+    First start off with taking the limit of the \(n\)th root of the absolute value of the series:
+    \[\lim_{n \to \infty} \sqrt[n]{\left| a_n \right|} = L\] 
+    \begin{itemize}
+        \item If \(L < 1\) then the series absolutely converges.
+        \item If \(L > 1\) then the series diverges.
+        \item If \(L = 1\) then the test is inconclusive.
+    \end{itemize}
+    Note this is the same outcomes as the ratio test.
+    
+    \subsection{Example}
+        \[\sum_{n = 1}^{\infty} (-1)^{n-1} \cdot \frac{2^{n+3}}{(n+1)^n}\]
+        This is alternating, but showing decreasing is going to be difficult. Its not all positive terms.
+        Lets try the root test:
+        \begin{align*}
+            \lim_{n \to \infty} \sqrt[n]{|a_n|}
+            &= \lim_{n \to \infty} \sqrt[n]{\left| (-1)^{n-1} \cdot \frac{2^{n+3}}{(n+1)^n} \right|} \\
+            &= \lim_{n \to \infty} \sqrt[n]{\frac{2^3 \cdot 2^n}{(n+1)^n}} \\
+            &= \lim_{n \to \infty} \sqrt[n]{2^3 \cdot \left(\frac{2}{n+1}\right)^n } \\
+            &= \lim_{n \to \infty} \sqrt[n]{2^3} \cdot \left(\frac{2}{n+1}\right) \\
+            &= \lim_{n \to \infty} 2^{3/n} \cdot \frac{2}{n+1} \\
+            &= 0
+        \end{align*}
+        So by the root test, with the limit \(L < 1\) the series is absolutely convergent.
+
+\section{Review on series}
+    \begin{enumerate}
+        \item The first thing we look for in any series it the divergence test. If \(\lim a_n \neq 0\), then the series \(\sum a_n\) diverges.
+        \item Look for known types of series that we can work with:
+        \begin{enumerate}
+            \item Geometric \[\sum ar^{n-1}\]
+            converges if \(|r| < 1\) otherwise it diverges. Remember: the sum of this is \(\frac{a}{1-r}\).
+            \item Telescoping series, first start by looking at partial sum \(S_n\), then take the limit
+            \[\lim_{n \to \infty} S_n\]
+            \item P-Series \[\sum \frac{1}{n^P}\]
+            When \(P > 1\) the series converges, if \(P \leq 1\) it diverges.
+        \end{enumerate}
+        \item Try the integral test if the terms of \(a_n\)are positive, continuous and decreasing on the interval.
+        Start by finding a function \(f(x)\) that models the series \(a_n\)
+        \[\int_{1}^{\infty} f(x) \,\mathrm{d}x \]
+        If the integral converges, then the series converges. If the integral diverges then the series diverges.
+        \item If we have a series \(a_n\) where all the terms are positive and the series acts like a known series (Geometric, P-series, etc)
+        we can try to use a comparison test (or limit comparison test).
+        \begin{enumerate}
+            \item If \(a_n < b_n\) and the series \(b_n\) converges, then the series \(a_n\) also converges.
+            \item If \(a_n > b_n\) and the series \(b_n\) diverges, then the series \(a_n\) also diverges.
+            \item For the limit comparison test:
+            \[\lim_{n \to \infty} \frac{a_n}{b_n}\]
+            If this exists, then both \(a_n\) and \(b_n\) have the same convergence/divergence.
+        \end{enumerate}
+        \item For an alternating series \(\sum (-1)^n a_n\) or \(\sum (-1)^{n-1} a_n\).
+        You can show convergence by meeting these criteria:
+        \begin{enumerate}
+            \item Show limit of the series is 0. \[\lim_{n \to \infty} a_n = 0\]
+            \item Show decreasing terms \[a_{n+1} \leq a_n \] or \[f'(x) < 0\]
+        \end{enumerate}
+        \item Try the ratio test if for series with factorials and \(n\)th powers
+        \[\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = L \]
+        \begin{enumerate}
+            \item If \(L < 1\) then the series is absolutely convergent.
+            \item If \(L > 1\) then the series is divergent.
+            \item If \(L = 1\) then the test is inconclusive.
+        \end{enumerate}
+        \item Try the root test for series with \(n\)th powers. 
+        \[\lim_{n \to \infty} \sqrt[n]{\left| a_n \right|} = L\] 
+        \begin{enumerate}
+            \item If \(L < 1\) then the series absolutely converges.
+            \item If \(L > 1\) then the series diverges.
+            \item If \(L = 1\) then the test is inconclusive.
+        \end{enumerate}
+    \end{enumerate}
+    
+    \subsection{Examples}
+        \begin{enumerate}
+            \item \[\sum_{n = 1}^{\infty} \frac{2n-1}{3n-1} \]
+            This fails the divergence test!
+            \item \[\sum_{n = 1}^{\infty} \left[ \frac{2}{3^n} - \frac{1}{n \cdot (n+1)} \right]\]
+            This is a geometric and a telescoping series. Both would have to converge for it to converge.
+            \item \[\sum_{n = 1}^{\infty} \left(\frac{1}{n}\right)^e \]
+            This can be evaluated as a P-series. \(P = e > 1\)
+            \item \[\sum_{n = 4}^{\infty} \frac{1}{n \sqrt{\ln n}} \]
+            This one works well with the integral test.
+            \item \[\sum_{n = 1}^{\infty} \frac{\ln n}{n^2} \]
+            This one has single terms, so a comparison test should work well.
+            Consider the comparison \(< \frac{\sqrt{n}}{n^2}\)
+            \item \[\sum_{n = 1}^{\infty} \frac{\sqrt{n^3 - 2}}{n^4+3n^2-1} \]
+            This has multiple terms, so look at how it behaves (the leading terms).
+            Then take the limit comparison test where \[\lim_{n \to \infty} \frac{a_n}{b_n}\]
+            \item \[\sum_{n = 1}^{\infty} (-1)^n \cdot \frac{\sqrt{n}}{n^2 + 1} \]
+            This is an alternating series, so do the alternating series test.
+            \item \[\sum_{n = 1}^{\infty} \frac{n}{2^n} \]
+            You can do either the root test or the ratio test on this.
+            Remeber: \[n^1 = n^{n/n} = \left(n^{1/n}\right)^n\]
+            \item \[\sum_{n = 1}^{\infty} \frac{\sin n}{\sqrt{n^3 + 1}} \]
+            Use the absolute value on this remembering: \[|\sin n| \leq 1\] then try other techniques.
+        \end{enumerate}
+
 
 \end{document}
