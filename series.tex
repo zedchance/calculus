@@ -716,5 +716,138 @@
             Use the absolute value on this remembering: \[|\sin n| \leq 1\] then try other techniques.
         \end{enumerate}
 
-
+\section{Power series}
+    A series that contains some kind of variable \(x\) that is being rasied to some power \(n\).
+    There are two different types of power series:
+    \begin{enumerate}
+        \item \[\sum_{n=0}^{\infty} a_n \cdot x^n\]
+        Lets look at the first couple of terms of this series:
+        \[= a_0 + a_1 x + a_2 x^2 + a_3 x^3 + ...\]
+        This is a power series of the variable \(x\) that is centered at the origin (or 0).
+        (Nothing is being added or subtracted from \(x\))
+        \item \[\sum_{n = 0}^{\infty} a_n \cdot (x-c)^n \]
+        Lets look at the first couple terms of this series:
+        \[= a_0 + a_1 (x-c)^1 + a_2(x-c)^2 + a_3(x-c)^3 + ...\]
+        This is a power series of the variable \(x\) with a center \(c\). 
+        (\(c\) is a constant).
+    \end{enumerate}
+    Consider:
+    \[\sum_{n = 0}^{\infty} (-1)^n \cdot \frac{x^n}{n!} \]
+    You can tell this a power series because it has \(x^n\) in it.
+    It looks like this is going to be centered at the origin.
+    We can also see our \(a_n\) by plugging in the first \(n=0\) which makes the \(x\) evaluate to \(1\).
+    You can also tell its an alternating power series because of the \((-1)^n\).
+    Lets look at the pattern of the first couple of terms:
+    \[= 1 - \frac{x}{1!} + \frac{x^2}{2!} - \frac{x^3}{3!} + ...\]\\
+    \\
+    Consider:
+    \[\sum_{n=0}^{\infty} (-1)^n \cdot \frac{(x - \frac{\pi}{4})^{2n+1}}{(2n+1)!}\]
+    Looks like a power series because it has the variable \(x\).
+    It is centered at \(\frac{\pi}{4}\).
+    Lets look at the first couple of terms:
+    \[= \frac{(x - \frac{\pi}{4})}{1!} - \frac{(x - \frac{\pi}{4})^3}{3!} + \frac{(x - \frac{\pi}{4})^5}{5!} - ...\]
+    This can be shown as a function of \(x\).
+    \[f(x) = \sum_{n = 0}^{\infty} a_n (x - c)^n\]
+    When the series is actually evaluated there isn't any more \(n\) and whats left is just a bunch of terms with \(x\).
+    Then, you can actually plug in a value for \(x\) and you can tell if the power series converges/diverges.
+    The sum of the series after plugging in a value for \(x\) is the output of the function.
+    So, the function \(f(x)\) is defined to have the domain of all \(x\) such that \(f(x)\) converges.
+    It is also good to note that:
+    \[f(c) = a_0\]
+    which defines the center of the series as \((c, a_0)\).
+    The domain of \(f(x)\) will be an interval centered around \(c\).\\
+    \\
+    Convergence of a power series can be one of three things:
+    \begin{enumerate}
+        \item You can have a power series where the function is only defined at \(x = c\).
+        This means that the radius of convergence \(r = 0\).
+        This would define an interval of convergence at:
+        \[0 \leq x \leq 0\]
+        \item You can have a power series where it converges for all \(x\).
+        This means that the radius of convergence \(r = \infty\).
+        This would define an interval of convergence at:
+        \[- \infty \leq x \leq \infty\]
+        \item You can have a power series where values within a certain radius converge on
+        \(|x-c| < R\).
+        If \(|x-c| > R\) then it diverges.
+        This would define an interval of convergence at:
+        \[|x-c| < R\]
+        \[-R < x - c < R\]
+        \[c - R < x < c + R\]
+    \end{enumerate}
+    After you check the interval of convergence, you need to check each end point.
+    Each of these end points need to be checked if included in interval you must use a convergence test.
+    
+    \subsection{Example}
+        \[\sum_{n=0}^{\infty} x^n \]
+        This is a power series with \(a_n = 1\).
+        Check out the first couple of terms:
+        \[= 1 + x + x^2 + x^3 + ...\]
+        This might look weird at first but its actually a geometric series.
+        So you can think of the function as:
+        \[\sum_{n=0}^{\infty} 1 \cdot x^n\]
+        This shows a geometric series with the values \(a = 1\) and \(r = x\).
+        Geometric series when \(|r| < 1\).
+        So this series converges when \(|x| < 1\).
+        So the domain of our function \(f(x)\) is \(-1 < x < 1\).
+        The sum of this series is:
+        \[= \frac{1}{1-x}\]
+        So this series actually represents \(f(x)\) on the interval \((-1, 1)\).
+        \[f(x) = \sum_{n=0}^{\infty} x^n = \frac{1}{1-x}\] 
+        
+    \subsection{Example}
+        \[\sum_{n=0}^{\infty} n! \cdot x^n \]
+        We need to find the interval of convergence.
+        Since we see the factorial, lets try the ratio test:
+        \[\lim_{n \to \infty} \left| \frac{(n+1)!\cdot x^{n-1}}{n! \cdot x^n}\right|\]
+        Since \(x\) is varying, you can't just drop the absolute value instantly.
+        Lets simplify:
+        \[\lim_{n \to \infty} \left| (n+1) \cdot x\right|\]
+        We can strip the absolute value off of \(n\).
+        \[\lim_{n \to \infty} (n+1) \cdot |x| \]
+        Lets consider \(x\) not equaling 0. 
+        Every value of \(x\) makes the limit evaulate to \(\infty\).
+        But when \(x = 0\) it is 0.
+        Which means by the ratio test when \(x \neq 0\) the series diverges.
+        When \(x = 0\) it means that the series converges.
+        Side note: The radius of convergence \(R = 0\) 
+    
+    \subsection{Example}
+        \[\sum_{n=0}^{\infty}  (-1)^n \cdot \frac{x^{2n}}{(2n)!}\]
+        Remember, this power series is a function in terms of \(x\).
+        Lets find out where it converges with the ratio test:
+        \begin{align*}
+            &\lim_{n \to \infty} \left| \frac{(-1)^{n+1} \cdot \frac{x^{2(n+1)}}{(2(n+1))!}}{(-1)^n \cdot \frac{x^{2n}}{(2n)!}}\right| \\
+            &= \lim_{n \to \infty}  \left| \frac{x^{2n+2}}{(2n+2)!} \cdot \frac{(2n)!}{x^2n}\right| \\
+            && & \text{Note:} \\
+            && & \frac{x^{2n+2}}{x^2n} = \frac{x^{2n} \cdot x^2}{x^{2n}} \\
+            && &= x^2 \\
+            && & \text{And:} \\
+            && & \frac{2n)!}{(2n + 2)!} \\
+            && &= \frac{(2n)!}{(2n+2)(2n+1)(2n)!} \\
+            && &= \frac{1}{(2n+2)(2n+1)} \\
+            &= \lim_{n \to \infty} \frac{x^2}{(2n+2)(2n+1)} \\
+            &= 0
+        \end{align*}
+        This shows that the series evaluates to 0 for any value of \(x\).
+        So any values plugged in to \(x\) means that by the ratio test, the series converges.
+        Therefore the radius of convergence \(R = \infty\).
+        The domain of this function is \((-\infty, \infty)\).
+        
+    \subsection{Example}
+        \[\sum_{n=1}^{\infty}  \frac{x^n}{n}\]
+        We need to find the domain of the function in terms of \(x\).
+        That means finding where it converges.
+        Lets setup the ratio test:
+        \begin{align*}
+            \lim_{n \to \infty} \left| \frac{\frac{x^{n+1}}{n+1}}{\frac{x^n}{n}}\right|
+            &= \lim_{n \to \infty} \left| \frac{x^{n+1}}{n+1} \cdot \frac{n!}{x^n}\right| \\
+            &= \lim_{n \to \infty} \left| \frac{n}{n+1} \cdot x\right| \\
+            &= \lim_{n \to \infty} \frac{n}{n+1} \cdot |x| \\
+            && &\text{Note:} \\
+            && &\lim_{n \to \infty} \frac{n}{n+1} = 1 \\
+            &= |x|
+        \end{align*}
+        
+   
 \end{document}
