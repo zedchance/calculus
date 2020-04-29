@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{mathtools}
+\usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -820,7 +821,7 @@
             &\lim_{n \to \infty} \left| \frac{(-1)^{n+1} \cdot \frac{x^{2(n+1)}}{(2(n+1))!}}{(-1)^n \cdot \frac{x^{2n}}{(2n)!}}\right| \\
             &= \lim_{n \to \infty}  \left| \frac{x^{2n+2}}{(2n+2)!} \cdot \frac{(2n)!}{x^2n}\right| \\
             && & \text{Note:} \\
-            && & \frac{x^{2n+2}}{x^2n} = \frac{x^{2n} \cdot x^2}{x^{2n}} \\
+            && & \frac{x^{2n+2}}{x^{2n}} = \frac{x^{2n} \cdot x^2}{x^{2n}} \\
             && &= x^2 \\
             && & \text{And:} \\
             && & \frac{2n)!}{(2n + 2)!} \\
@@ -829,6 +830,7 @@
             &= \lim_{n \to \infty} \frac{x^2}{(2n+2)(2n+1)} \\
             &= 0
         \end{align*}
+        Note: the absolute value can be dropped at the second to last step because \(x\) is being squared.
         This shows that the series evaluates to 0 for any value of \(x\).
         So any values plugged in to \(x\) means that by the ratio test, the series converges.
         Therefore the radius of convergence \(R = \infty\).
@@ -848,6 +850,190 @@
             && &\lim_{n \to \infty} \frac{n}{n+1} = 1 \\
             &= |x|
         \end{align*}
-        
-   
+        So by the ratio test if \(|x| < 1\) you'll have a convergent series.
+        \[|x| < 1\]
+        \[-1 < x < 1\]
+        So the radius of convergence \(R = 1\).
+        The center of the series is \(0\).
+        Lets determine the endpoints to see if they are included in the interval.
+        First plug in \(x = -1\):
+        \begin{align*}
+            \sum_{n=1}^{\infty}  \frac{x^n}{n} 
+            &= \sum_{n=1}^{\infty}  \frac{(-1)^n}{n} \\
+        \end{align*}
+        This is an alternating harmonic series, which converges.
+        This means that we include the endpoint \(x = -1\).
+        Lets check the endpoint \(x = 1\):
+        \begin{align*}
+            \sum_{n=1}^{\infty}  \frac{x^n}{n} 
+            &= \sum_{n=1}^{\infty}  \frac{(1)^n}{n} \\
+        \end{align*} 
+        This is a harmonic series which diverges.
+        This means that we don't include the endpoint \(x = 1\).
+        Therefore the interval of the series is:
+        \[-1 \leq x < 1\]
+    
+    \subsection{Example}
+        \[\sum_{n = 1}^{\infty} \frac{(x-2)^n}{n^2 \cdot 3^n} \]
+        This is a power series with a center at \(2\).
+        Lets start off by doing a ratio test:
+        \begin{align*}
+            \lim_{n \to \infty} \left| \frac{\frac{(x-2)^{n+1}}{(n+1)^2 \cdot 3^{n+1}}}{\frac{(x-2)^n}{n^2 \cdot 3^n}} \right|
+            &= \lim_{n \to \infty} \left| \frac{(x-2)^{n+1}}{(n+1)^2 \cdot 3^{n+1}} \cdot \frac{n^2 \cdot 3^n}{(x-2)^n} \right| \\
+            &= \lim_{n \to \infty} \left| \frac{(x-2) \cdot n^2}{3(n+1)^2} \right| \\
+            &= \lim_{n \to \infty} \left( \frac{n}{n+1}\right)^2 \cdot \left| \frac{x-2}{3} \right| \\
+            && &\text{Note:} \\
+            && & \lim_{n \to \infty} \left( \frac{n}{n+1} \right)^2 \\
+            && &=1 \\
+            &= \left| \frac{x-2}{3}\right| \\
+            &= \frac{|x-2|}{3}
+        \end{align*}
+        Remember if the result is less than 1 the series will converge.
+        So:
+        \[\frac{|x-2|}{3} < 1\]
+        \[|x-2| < 3\]
+        \[-3 < x-2 < 3\]
+        \[-1 < x < 5\]
+        The radius of convergence is \(R = 3\).
+        Finally, you must check the endpoints to see if they are included in the interval.
+        First lets try \(x = -1\)
+        \begin{align*}
+            \lim_{n \to \infty} \frac{(x-2)^n}{n^2 \cdot 3^n}
+            &= \lim_{n \to \infty}  \frac{(-3)^n}{n^2 \cdot 3^n} \\
+            &= \lim_{n \to \infty} \left(\frac{-3}{3}\right)^n \cdot \frac{1}{n^2} \\
+            &=\lim_{n \to \infty} (-1)^n \cdot \frac{1}{n^2}
+        \end{align*}
+        This is an alternating series.
+        By alternating series test, since the limit is 0 and the terms are decreasing, the series converges.
+        Lets test \(x = 5\):
+        \begin{align*}
+            \lim_{n \to \infty} \frac{(x-2)^n}{n^2 \cdot 3^n}
+            &= \lim_{n \to \infty}  \frac{(3)^n}{n^2 \cdot 3^n} \\
+            &= \lim_{n \to \infty} \frac{1}{n^2}
+        \end{align*}
+        This is a p-series where \(P = 2\), so since \(P\) is greater than 1, the series converges.
+        Therefore you can include both endpoints on the interval.
+        \[-1 \leq x \leq 5\]
+    
+    \subsection{Example}
+        \[\sum_{n=0}^{\infty} (-1)^n \cdot \frac{2^n \cdot x^n}{\sqrt{n+1}}\]
+        This is a power series with the center at \(0\).
+        Lets try the ratio test:
+        \begin{align*}
+            \lim_{n \to \infty} \left| \frac{(-1)^{n+1} \cdot \frac{2^{n+1} \cdot x^{n+1}}{\sqrt{(n+1)+1}}}{(-1)^n \cdot \frac{2^n \cdot x^n}{\sqrt{n+1}}} \right|
+            &= \lim_{n \to \infty} \left| \frac{2^{n+1} \cdot x^{n+1}}{\sqrt{n+2}} \cdot \frac{\sqrt{n+1}}{2^n \cdot x^n} \right| \\
+            &= \lim_{n \to \infty} \left| \sqrt{\frac{n+1}{n+2}} \cdot 2x \right| \\
+            &= \lim_{n \to \infty}  \sqrt{\frac{n+1}{n+2}} \cdot 2 |x| \\
+            && &\text{Note:} \\
+            && &\lim_{n \to \infty}  \sqrt{\frac{n+1}{n+2}} = 1 \\
+            &=2|x|
+        \end{align*}
+        So the serieses converges when:
+        \[2|x| < 1\]
+        \[|x| < \frac{1}{2}\]
+        \[- \frac{1}{2} < x < \frac{1}{2}\]
+        The radius of convergence is \(R = \frac{1}{2}\).
+        The last thing to do is check the endpoints to see if they are to be included in the interval.
+        Lets check \(x = - \frac{1}{2}\)
+        \begin{align*}
+            \sum_{n=0}^{\infty} (-1)^n \cdot \frac{2^n(- \frac{1}{2})^n}{\sqrt{n+1}}
+            &= \sum_{n=0}^{\infty} \frac{1^n}{\sqrt{n+1}}
+        \end{align*}
+        We can use a limit comparison test to evalulate this series, lets compare it to \(\sum \frac{1}{\sqrt{n}}\):
+        \begin{align*}
+            \lim_{n \to \infty} \frac{\frac{1}{\sqrt{n+1}}}{\frac{1}{\sqrt{n}}}
+            &= 1
+        \end{align*}
+        Since the limit exists, then by the limit comparison test, both of the series have the same result.
+        We know that \(\sum \frac{1}{\sqrt{n}}\) diverges (P-series with \(P = \frac{1}{2}\))).
+        Therefore by the limit comparison test we can say that the series compared to also diverges.
+        So, we won't include this endpoint in the interval.
+        It is also good to note that:
+        \[\sum_{n=0}^{\infty} \frac{1}{\sqrt{n+1}} = \sum_{n = 1}^{\infty} \frac{1}{\sqrt{n}}\]
+        So the limit comparison test isn't entirely needed. 
+        Lets try the endpoint \(x = \frac{1}{2}\).
+        \begin{align*}
+            \sum_{n=0}^{\infty} (-1)^n \cdot \frac{2^n(\frac{1}{2})^n}{\sqrt{n+1}}
+            &= \sum_{n=0}^{\infty} \frac{(-1)^n}{\sqrt{n+1}}
+        \end{align*}
+        This is an alternating series, so lets check the limit:
+        \[\lim_{n \to \infty} \frac{1}{\sqrt{n+1}} = 0\]
+        Check to see if it is decreasing:
+        \[a_{n+1} < a_n\]
+        \[\frac{1}{\sqrt{n+2}} < \frac{1}{\sqrt{n+1}}\]
+        So the series is decreasing. 
+        Therefore by the alternate series test we have convergence.
+        So this point will be included on the interval of convergence.
+        Overall our series of convergence is:
+        \[- \frac{1}{2} < x \leq \frac{1}{2}\]
+
+\section{Calculus with Power series}
+    Lets assume we have a power series \(f(x)\):
+    \[f(x) = \sum_{n=0}^{\infty} a_n (x-c)^n\]
+    We'll talk about derivatives with power series first.
+    Take a look at the first couple of terms:
+    \[f(x) = a_0 + a_1(x-c) + a_2(x-c)^2 + a_3(x-3)^3 + ...\]
+    Remember that all of the \(a\) terms are constants.
+    Also note that when you take derivatives you can split the derivatives on sums and differences.
+    Look at the first few terms derivatives:
+    \[f'(x) = 0 + a_1 + 2a_2(x-c)^1 + 3a_3(x-c)^2 + ...\]
+    So \(f'(x)\) really starts at \(a_1\) now.
+    \[f'(x) = \sum_{n = 1}^{\infty} na_n(x-c)^{n-1}\]
+    So comparing the two, you can tell that its just the chain rule!
+    Now lets talk about integrating power series.
+    Lets look at the first couple of terms of the integral:
+    \[\int f(x) \,\mathrm{d}x = a_0(x-c) + \frac{1}{2}a_2(x-c)^2 + \frac{1}{3}a_2(x-c)^3 + ...\]
+    So we can see the pattern thats happening:
+    \[\int f(x) \,\mathrm{d}x = \sum_{n=0}^{\infty} \frac{a_n(x-c)^{n+1}}{n+1} + C\]
+    You can tell this is just the basic rule integrating, power rule in reverse!
+    So to summarize:
+    \begin{enumerate}
+        \item Derivatives of power series:
+        \[f(x) = \sum_{n=0}^{\infty} a_n (x-c)^n\]
+        \[f'(x) = \sum_{n = 1}^{\infty} na_n(x-c)^{n-1}\]
+        \item Integrals of power series:
+        \[f(x) = \sum_{n=0}^{\infty} a_n (x-c)^n\]
+        \[\int f(x) \,\mathrm{d}x = \sum_{n=0}^{\infty} \frac{a_n(x-c)^{n+1}}{n+1} + C\]
+    \end{enumerate}
+    Remember, since these series have intervals of convergence.
+    Its good to note that there is a potential to lose endpoints on derivatives, and gain endpoints on integrals.
+    The rest of the interval of convergence will remain the same however.
+    
+    \subsection{Example}
+        Find a power series representation for:
+        \[\ln (1-x)\]
+        on the interval \((-1, 1)\).
+        We're looking for a function that when you either derive or integrate it gives that series.
+        We can start with thinking about the integral of:
+        \[\frac{1}{1-x}\]
+        This is pretty close to what we want, but the negative sign is different.
+        You can also think of the fraction \(\frac{1}{1-x}\) as the sum of a geometric series where \(a = 1\) and \(r = x\).
+        \[\sum_{n = 1}^{\infty} 1 \cdot x^{n-1} \]
+        Its good to note that this is the same series as:
+        \[\sum_{n=0}^{\infty} x^n\]
+        Since this is a geometric series, \(|r| < 1\) which is why the interval is \((-1, 1)\).
+        So for this geometric power series to converge:
+        \[|x| < 1\]
+        So you can think of it like this
+        \[\frac{1}{1-x} = 1 + x + x^2 + x^3 + x^4 + ...\]
+        and integrate both sides:
+        \begin{align*}
+            \int \frac{1}{1-x} dx &= \int 1 + x + x^2 + x^3 + x^4 + ... dx \\
+            - \ln (1-x) &= x + \frac{1}{2}x^2 + \frac{1}{3}x^3 + ... + C \\
+            \ln (1-x) &= -x - \frac{1}{2}x^2 - \frac{1}{3}x^3 - ... - C 
+        \end{align*}
+        Let \(x = 0\):
+        \[\ln 1 = -C\]
+        \[C = 0\]
+        So since we know \(C\) we just need to find a series that represents:
+        \begin{align*}
+            \ln (1-x) &= -x - \frac{1}{2}x^2 - \frac{1}{3}x^3 - ... \\
+            \ln (1-x) &= -(x + \frac{1}{2}x^2 + \frac{1}{3}x^3 + ...) \\
+            \ln (1-x) &= - \sum_{n = 1}^{\infty} \frac{x^n}{n}
+        \end{align*}
+        Remember that the series converges on the interval \((-1, 1)\).
+
+\section{Taylor and MacLauren series}
+    
+
 \end{document}
