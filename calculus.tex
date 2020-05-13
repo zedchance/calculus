@@ -1,15 +1,42 @@
+% Calculus II notes
+% Zed Chance
+
 \documentclass{report}
 
 \usepackage{mathtools}
+
+% Cancel slash \cancel
 \usepackage[makeroom]{cancel}
+
+% Margin
 \usepackage[margin=1in]{geometry}
+
+% TOC links
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
     linktoc=all,
     linkcolor=black
 }
+
+% TOC depth
 \setcounter{tocdepth}{1}
+
+% Header customization
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Graphs
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\definecolor{rvwvcq}{rgb}{0.08235294117647059,0.396078431372549,0.7529411764705882}
 
 \title{Calculus II}
 \date{Spring 2020}
@@ -498,7 +525,8 @@
             & = \lim_{n \to \infty} \frac{n^2+2n+2}{2n^2+2} \\
             & = \frac{1}{2}
         \end{align*}
-        So by the ratio test, since the limit of the ratio is less than 1, it tells us that the original series if absolutely convergent.
+        So by the ratio test, since the limit of the ratio is less than 1, it tells us that the original series is absolutely convergent.
+        Since the series is absolutely convergent, it is also convergent.
     
     \subsection{Example}
         \[\sum_{n = 1}^{\infty} \frac{n!}{n^n} \]
@@ -593,7 +621,7 @@
             \item Show limit of the series is 0. \[\lim_{n \to \infty} a_n = 0\]
             \item Show decreasing terms \[a_{n+1} \leq a_n \] or \[f'(x) < 0\]
         \end{enumerate}
-        \item Try the ratio test if for series with factorials and \(n\)th powers
+        \item Try the ratio test for series with factorials and \(n\)th powers
         \[\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = L \]
         \begin{enumerate}
             \item If \(L < 1\) then the series is absolutely convergent.
@@ -736,7 +764,7 @@
         Lets find out where it converges with the ratio test:
         \begin{align*}
             &\lim_{n \to \infty} \left| \frac{(-1)^{n+1} \cdot \frac{x^{2(n+1)}}{(2(n+1))!}}{(-1)^n \cdot \frac{x^{2n}}{(2n)!}}\right| \\
-            &= \lim_{n \to \infty}  \left| \frac{x^{2n+2}}{(2n+2)!} \cdot \frac{(2n)!}{x^2n}\right| \\
+            &= \lim_{n \to \infty}  \left| \frac{x^{2n+2}}{(2n+2)!} \cdot \frac{(2n)!}{x^{2n}}\right| \\
             && & \text{Note:} \\
             && & \frac{x^{2n+2}}{x^{2n}} = \frac{x^{2n} \cdot x^2}{x^{2n}} \\
             && &= x^2 \\
@@ -962,9 +990,9 @@
     \[f(x) = a_0 + a_1(x-c) + a_2(x-c)^2 + a_3(x-c)^3 + \cdots + a_n(x-c)^n\]
     Lets look some derivatives:
     \begin{align*}
-        f'(x) &= 0 + a_1 + a_2(x-c) + 2a_2(x-c)^1 + 3a_3(x-c)^2 + \cdots + na_n(x-c)^{n-1} + \cdots \\
-        f''(x) &= 2 \cdot 1 \cdot a_2 + 3 \cdot 2 \cdot a_3(x-c)^1 + \cdots + n(n-1) \cdots a_n (x-c)^{n-2} + \cdots \\
-        f'''(x) &= 3 \cdot 2 \cdot 1 \cdot a_3 + \cdots + n(n-1)(n-2)a_n(x-c)^{n-3} + \cdots
+        f'(x) &= 0 + a_1 + 2a_2(x-c)^1 + 3a_3(x-c)^2 + \cdots + na_n(x-c)^{n-1} + \cdots \\
+        f''(x) &= 0 + 0 + 2 \cdot 1 \cdot a_2 + 3 \cdot 2 \cdot a_3(x-c)^1 + \cdots + n(n-1) \cdots a_n (x-c)^{n-2} + \cdots \\
+        f'''(x) &= 0 + 0 + 0 + 3 \cdot 2 \cdot 1 \cdot a_3 + \cdots + n(n-1)(n-2)a_n(x-c)^{n-3} + \cdots
     \end{align*}
     You can see eventually you get a constant for every term on each continued derivative.
     You can also see a pattern emerging with factorials.
@@ -1207,7 +1235,7 @@
         \begin{enumerate}
             \item \[\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots = \sum_{n=0}^{\infty} x^n\]
             This is a geometric series that converges on the inteval \(-1 < x < 1\).
-            \item \[e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots = \sum_{n=0}^{\infty} \frac{x^n}{n!}'\]
+            \item \[e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots = \sum_{n=0}^{\infty} \frac{x^n}{n!}\]
             This converges for all real numbers \(- \infty < x < \infty\).
             \item \[\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!}\]
             This converges for all real numbers \(- \infty < x < \infty\).
@@ -1285,7 +1313,7 @@
         So lets use the common pattern from our known Taylor series:
         \[e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \]
         Lets make this series behave more like our known:
-        \[= \overbrace{\frac{1}{2} \left[ 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \right]}^{\frac{1}{2}e^x} - \overbrace{\frac{1}{2} \left[ 1 - x + \frac{x^2}{2!} - \frac{x^3}{3!} + \cdots \right]}^{\frac{1}{2}e^{-2}}\]
+        \[= \overbrace{\frac{1}{2} \left[ 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \right]}^{\frac{1}{2}e^x} - \overbrace{\frac{1}{2} \left[ 1 - x + \frac{x^2}{2!} - \frac{x^3}{3!} + \cdots \right]}^{\frac{1}{2}e^{-x}}\]
         Look at what you can simplify:
         \[= \overbrace{\frac{1}{2} \left[ \cancel{1} + x + \cancel{\frac{x^2}{2!}} + \frac{x^3}{3!} + \cdots \right]}^{\frac{1}{2}e^x} - \overbrace{\frac{1}{2} \left[ \cancel{1} - x + \cancel{\frac{x^2}{2!}} - \frac{x^3}{3!} + \cdots \right]}^{\frac{1}{2}e^{-2}}\]
         All of the even powered terms cancel, and all of the odd powered terms get added together:
@@ -1320,7 +1348,7 @@
         Remember, integrating series don't change their interval of convergence.
 
 \newpage
-\section{Approximation by Taylor polynomials}
+\section[Taylor polynomials]{Approximating functions using Taylor polynomials}
     Based on Taylor series, we can use a Taylor polynomial to closely mimic a function around a certain point for a certain interval.
     Lets say we have a function:
     \[f(x) = f(c) + f'(c)(x-c) + \frac{f''(c)(x-c)^2}{2!} + \cdots + \frac{f^n(c)(x-c)^n}{n!} + \cdots\]
@@ -1328,7 +1356,7 @@
     Now the series won't perfectly represent the function because it is stopping short of \(\infty\).
     If a Taylor series does represent the function and we have the the entire series, it can represent it.
     However, the series stopped short at \(n\) is considered a Taylor polynomial of the \(n\)th degree.
-    \[\underbrace{f(x) = f(c) + f'(c)(x-c) + \frac{f''(c)(x-c)^2}{2!} + \cdots + \frac{f^n(c)(x-c)^n}{n!}}_{n \text{th degree Taylor polynomial}}\]
+    \[f(x) = \overbrace{\underbrace{f(c) + f'(c)(x-c) + \frac{f''(c)(x-c)^2}{2!} + \cdots + \frac{f^n(c)(x-c)^n}{n!}}_{n \text{th degree Taylor polynomial}} \underbrace{+ \cdots}_{R_n(x)}}^{\text{Taylor series}}\]
     There is certainly a difference between a Taylor series and a Taylor polynomial.
     This little extra is called the remainder of the Taylor polynomial, we use \(R_n\) to show the remainder.
     So the Taylor polynomial plus \(R_n\) equals the Taylor series.
@@ -1370,7 +1398,7 @@
         Plug in the numbers that we know:
         \begin{align*}
             P_4(x) &= 0 + 1(x-1) - \frac{(x-1)^2}{2} + \frac{2(x-1)^3}{3!} - \frac{6(x-1)^4}{4!} \\
-            &= (x-1) - \frac{(x-1)^2}{2} + \frac{(x-1)^3}{3} -\frac{(x-4)^4}{4}
+            &= (x-1) - \frac{(x-1)^2}{2} + \frac{(x-1)^3}{3} -\frac{(x-1)^4}{4}
         \end{align*}
         This polynomial approximates \(f(x) = \ln x\) around the number \(1\).
         So if we want to approximate the function evaluated at \(1.1\), then we can plug in \(1.1\) into our approximating polynomial that we have:
@@ -1485,7 +1513,7 @@
             \[\lim_{n \to \infty} R_n(x) = 0\]
         \end{enumerate}
         Since we have shown that the limit of \(R_n(x)\) goes to \(0\) when \(n \to \infty\) on both intervals, it proves that the Taylor series
-        is a representation o fthe function \(f(x) = e^x\).
+        is a representation of the function \(f(x) = e^x\).
     
     \subsection{Example}
         Show that the Taylor series
@@ -1507,6 +1535,376 @@
         So:
         \[\lim_{n \to \infty} \left| R_n(x) \right| = 0\]
         So, the Taylor series is a representation of the function!
+
+\chapter{Parametric equations}
+
+\section{Plane curves}
+    A plane curve is defined as "the motion of an object in a plane".
+    There are a few problems with defining a plane curve like a normal function, (like a function in terms of \(x\) and \(y\)):
+    \begin{enumerate}
+        \item Many times the plane curves are not functions.
+        \item Even if the plane is a function, they can't always be explicitly defined in terms of a single variable,
+        and they don't tell where the object is at a given time.
+        \item No direction is given. We need to know start and stop points.
+    \end{enumerate} 
+    To deal with these problems we create what are called parametric equations.
+
+\section{Intro to parametric equations}
+    Instead of having \(x\) as a function of \(y\) (or vice versa), we're going to define \((x, y)\) as a function of an independent variable \(T\) for time:
+    \begin{align*}
+        x = f(T) &&
+        y = g(T)
+    \end{align*}
+    Define motion in both the \(x\) and \(y\) directions as a function of a new independent variable \(T\) over a common domain \(I\).
+    This is a better way to define a plane curve because each variable can now be described as functions on their own.
+    The \(T\) is called the parameter, and \(I\) is the parameter's interval. 
+    Note:
+    \begin{itemize}
+        \item \(T\) is typically thought of as time.
+        So for some interval \[T = [a, b]\] \(T\) will start at an initial point \(a\) and end at a terminal point \(b\).
+        \item The initial point will start at \(T = a\), this is where start our motion.
+        This is the point \((f(a), g(a))\).
+        \item The terminal point ends at \(T = b\), this is where the motion stops.
+        This is the point \((f(b), g(b))\).
+        \item This motion travels along a trajectory with a specific orientation.
+    \end{itemize}
+
+    \subsection{Example}
+        Suppose we have:
+        \begin{align*}
+            x = T^2 - 4 &&
+            y = 2T
+        \end{align*}
+        on the interval \(-1 \leq T \leq 2\).
+        Lets start by plugging in some \(T\) values to see whats going on:
+        \begin{align*}
+            \begin{tabular}{l | r}
+                \(T\) & \((x, y)\) \\
+                \hline
+                -1 & (-3,-2) \\
+                -1/2 & (\(\frac{-15}{4}\), -1) \\
+                0 & (-4, 0) \\
+                1/2 & (\(\frac{-15}{4}\), 1)\\
+                1 & (-3, 2) \\
+                2 & (0, 4)
+            \end{tabular}
+        \end{align*}
+        So we can see our motion starts at \((-3, -2)\) when \(T = -1\).
+        Our motions ends when \(T = 2\) at the point \((0, 4)\).
+        However, there is a better way to do this.
+        Instead of plugging in a bunch of points, lets try to combine the two functions given to us:
+        \begin{align*}
+            x = T^2 - 4 &&
+            y &= 2T \\
+            && T &= \frac{y}{2} \\
+            && \text{Plug into \(x\)} \\
+            x = \left( \frac{y}{2} \right)^2 - 4
+        \end{align*}
+        A lot of times you can express the given functions as a single function in terms of \(x\) and \(y\), however
+        you still need to find the initial and terminal points.
+    
+    \subsection{Example}
+        \begin{align*}
+            x = \sqrt{T} &&
+            y = T
+        \end{align*}
+        This problem is given to us without an interval. 
+        When this is the case you must use the natural domain, where the domain of each of these functions is going to determine what our overall domain is.
+        The domain of \(y\) in this case is all real numbers, however the domain of \(x\) is:
+        \[T \geq 0\]
+        This problem can be rewritten as the simple function:
+        \[x = \sqrt{y}\]
+        \[y = x^2\]
+        This is a parabola, however it doesn't represent the parametric equation given to us.
+        Note when \(T\) equals 0, the the \((x, y)\) point is the origin, this is our intial point.
+        Since \(T\) keeps going to \(\infty\) there isn't a terminal point.
+        The curve travels in the direction from \(0 \to \infty\).
+    
+    \subsection{Example}
+        \begin{align*}
+            x = T &&
+            y = T^2
+        \end{align*}
+        We can notice that \(y = x^2\), which is the same as the last example. 
+        We can start with the simple graph of the parabola \(y = x^2\), but lets use our parameter to determine where it starts and stops.
+        There aren't any restrictions for the parameter \(T\), so the interval for our motion is \((- \infty, \infty)\).
+        You can tell if the interval is correct by "plugging in" these to see if it matches the behavior of the graph.
+        \[\text{As } T \to - \infty: x \to - \infty, y \to \infty\]
+        \[\text{As } T \to \infty: x \to \infty, y \to \infty\]
+        The direction is from left to right.
+        
+    \subsection{Example}
+        \begin{align*}
+            x = a \cos \theta &&
+            y = a \sin \theta &&
+            a > 0
+        \end{align*}
+        \(\theta\) is the parameter.
+        \(a\) is just a constant here.
+        We can start to solve for the parameter using both equations, but not all the way down to the inverse functions.
+        \begin{align*}
+            \cos \theta = \frac{x}{a} &&
+            \sin \theta = \frac{y}{a}
+        \end{align*}
+        Now we can use the Pythagorean identity:
+        \[\cos^2 \theta + \sin^2 \theta = 1\]
+        \[\left( \frac{x}{a} \right)^2 + \left(\frac{y}{a}\right)^2 = 1\]
+        \[x^2 + y^2 = a^2\]
+        This reveals that our variable \(a\) is the radius of a circle centered at the origin.
+        Without an interval given to us we don't know where the initial and temrinal points are, and we don't know the direction of motion.
+        For demonstration lets try the interval \(I = [0, \pi]\):
+        \begin{align*}
+            \theta = 0 : x = a, y = 0 \\
+            \theta = \pi : x = -a, y = 0
+        \end{align*}
+        The direction is traveling counter-clockwise on the circle.
+        
+    \subsection{Example}
+        \begin{align*}
+            x = \sin T &&
+            y = \sin 2T &&
+            0 \leq T \leq 2 \pi
+        \end{align*}
+        The \(x\) variable is as isolated as we want it.
+        But we can isolate the \(y\) to solve for a \(\cos T\):
+        \begin{align*}
+            y &= \sin 2T \\
+            y &= 2 \sin T \cos T \\
+            y &= 2 x \cos T \\
+            \frac{y}{2x} &= \cos T
+        \end{align*}
+        Now lets use our Pythagorean identity:
+        \begin{align*}
+            \cos^2 T + \sin^2 T &= 1 \\
+            \left(\frac{y}{2x}\right)^2 + x^2 &= 1 \\
+            \frac{y^2}{4x^2} + x^2 &= 1 \\
+            y^2 + 4x^4 &= 4x^2 \\
+            4x^4 - 4x^2 + y^2 &= 0 \\
+        \end{align*}
+        In terms of \(x\) it is an even functions. So there will be some symmetry about the y-axis.
+        Since \(y\) is also being squared, it is also even, so it is symmetrical about the x-axis also.
+        We can plug in some values in the first quadrant and get all of the other quadrant's points.
+        \begin{align*}
+            \begin{tabular}{l | r}
+                \(T\) & \((x, y)\) \\
+                \hline
+                0 & (0,0) \\
+                \(\pi / 6\) & \((1/2, \sqrt{3}/2)\) \\
+                \(\pi / 4\) & \((\sqrt{2} / 2, 1)\) \\
+                \(\pi / 3\) & \((\sqrt{3} / 2, \sqrt{3} / 2)\) \\
+                \(\pi / 2\) & \((1, 0)\) 
+            \end{tabular}
+        \end{align*}
+        By graphing these points, we can see the direction of travel is from 0 to 1 on the \(x\). 
+        Then it goes into quadrant 4, back to the origin.
+        It then travels into quadrant 2, then 3, then back to the origin.
+    
+\section{Calculus with parametric equations}
+    Calculus of parametric equations lets us find the slope of the line at a certain point despite not being a function.
+    The derivative of a function gives the slope of a curve at a point.
+    Remember you can't take a derivative of a curve that isn't a function, it will return multiple values (fails the vertical line test).
+    However, because we can define these curves as parametric equations, we can cut a piece of the curve out and use that as our function.
+    Choose points on either side of the point \(P\) that we want to find the slope of. 
+    We can then make a parametric equation to describe this function:
+    \begin{align*}
+        x = f(T) &&
+        y = g(T) &&
+        T \in  [a, b]
+    \end{align*}
+    Remember, our points are in terms of \(T\) so they take on the form:
+    \[(x, y) = (f(T), g(T))\]
+    The function starts at:
+    \[(f(a), g(a))\]
+    and ends at:
+    \[(f(b), g(b))\]
+    For the small section of the curve, our function, we can define \(y\) as a function of \(x\).
+    \[y = F(x)\]
+    Remember:
+    \begin{align*}
+        x = f(T) &&
+        y = g(T)
+    \end{align*}
+    Substitute in our \(y\):
+    \[g(T) = F(x)\]
+    and substitue in our \(x\):
+    \[g(T) = F(f(T))\]
+    Now we can derive both sides (don't forget the chain rule):
+    \[g'(T) = F'(f(T)) \cdot f'(T)\]
+    We can substitute our \(x\) back in:
+    \[g'(T) = F'(x) \cdot f'(T)\]
+    So:
+    \[F'(x) = \frac{g'(T)}{f'(T)}\]
+    (This isn't a quotient rule! This is just a derivative over a derivative).
+    This can be remembered by dividing the derivative of each function in terms of another variable (in this case \(T\)):
+    \[\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{\frac{\mathrm{d}y}{\mathrm{d}T}}{\frac{\mathrm{d}x}{\mathrm{d}T}}\]
+    
+    \subsection{Example}
+        Find the equation of the tangent line at \(T = \frac{\pi}{4}\):
+        \begin{align*}
+            x = \sec T &&
+            y = \tan T &&
+            - \frac{\pi}{2} < T < \frac{\pi}{2}
+        \end{align*}
+        Remember this curve isn't a function if it wraps around, so the tangent line is just local to the point.
+        To write the equation of a line we need both a slope and a point. Lets find the point first:
+        \begin{align*}
+            T = \frac{\pi}{4} &&
+            x = \sqrt{2} &&
+            y = 1
+        \end{align*}
+        So we have the point \((\sqrt{2}, 1)\).
+        Now to find the slope we need to find the derivative. Remember:
+        \[\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{\frac{\mathrm{d}y}{\mathrm{d}T}}{\frac{\mathrm{d}x}{\mathrm{d}T}}\]
+        So:
+        \[\mathrm{d}y = \sec^2 T\]
+        \[\mathrm{d}x = \sec T \tan T\]
+        We can simplify them when we divide:
+        \[\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{\sec^2 T}{\sec T \tan T}\]
+        \[= \frac{\sec T}{\tan T}\]
+        So lets plug in \(T\) and find the slope \(m\):
+        \[m = \frac{\sec \pi / 4}{\tan \pi / 4}\]
+        \[= \sqrt{2}\]
+        Therefore we have the tangent line:
+        \[y - 1 = \sqrt{2} (x - \sqrt{2})\]
+    
+    \subsection{Horizontal and vertical tangents}
+        Starting with our idea of finding the slope at a point for a parametric equation:
+        \[\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{\frac{\mathrm{d}y}{\mathrm{d}T}}{\frac{\mathrm{d}x}{\mathrm{d}T}}\] 
+        
+        \begin{itemize}
+            \item Horizontal tangent lines (horizontal asymptotes) will occur when
+            \begin{align*}
+                \frac{\mathrm{d}y}{\mathrm{d}T} = 0 &&
+                \frac{\mathrm{d}x}{\mathrm{d}T} \neq 0
+            \end{align*}
+            \item Vertical tangent lines (vertical asymptotes) occur when
+            \begin{align*}
+                \frac{\mathrm{d}y}{\mathrm{d}T} \neq 0 &&
+                \frac{\mathrm{d}x}{\mathrm{d}T} = 0
+            \end{align*}
+        \end{itemize} 
+    
+    \subsection{Example}
+        Find horizontal and veritcal tangents:
+        \begin{align*}
+            x = T^2 &&
+            y = T^3 - 3T
+        \end{align*}
+        \begin{itemize}
+            \item To check for horizontal tangents look for when \(\mathrm{d}y\) equals 0:
+            \[\frac{\mathrm{d}y}{\mathrm{d}T} = 3T^2 - 3\]
+            \[T = -1, 1\]
+            So to find the two points where these horizontal tangents exist plug in each value of \(T\):
+            \begin{align*}
+                \text{When } T &\to 1 &&
+                x = 1 &&
+                y = 2 &&
+                (1,2) \\
+                \text{When } T &\to -1 &&
+                x = 1 &&
+                y = -2 &&
+                (1,-2)
+            \end{align*}
+            \item To check for veritcal tangents look for when \(\mathrm{d}x\) equals 0:
+            \[\frac{\mathrm{d}x}{\mathrm{d}T} = 2T\]
+            \[T = 0\]
+            So:
+            \begin{align*}
+                \text{When } T \to 0 &&
+                x = 0 &&
+                y = 0 &&
+                (0,0)
+            \end{align*}
+        \end{itemize}
+        Now we need to find \(x\) and \(y\) intercepts:
+        \begin{itemize}
+            \item \(x\) intercept:
+            \[T^3 - 3T = 0\]
+            \[T = 0, \pm \sqrt{3}\]
+            Plugging these into our functions for \(x\) gives us these points:
+            \begin{align*}
+                (0, 0) &&
+                (3, 0) &&
+                (3, 0)
+            \end{align*}
+            This means that the path that the parametric curve takes must double back and hit the point \((3, 0)\) twice.
+            \item \(y\) intercept:
+            \[T^2 = 0\]
+            \[T = 0\]
+            So our point is:
+            \[(0, 0)\]
+        \end{itemize}
+        
+    \subsection{The second derivative}
+        Starting with our idea of finding the slope at a point for a parametric equation:
+        \[\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{\frac{\mathrm{d}y}{\mathrm{d}T}}{\frac{\mathrm{d}x}{\mathrm{d}T}}\]
+        Start by taking a second derivative of this in terms of \(x\), remember \(x\) is a function of \(T\) so it will end up being in terms of \(T\).
+        \[\frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\mathrm{d}y}{\mathrm{d}x} \right) = \frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\frac{\mathrm{d}y}{\mathrm{d}T}}{\frac{\mathrm{d}x}{\mathrm{d}T}} \right)\]
+        \[\frac{\mathrm{d}^2 y}{\mathrm{d} x^2} = \frac{\frac{\mathrm{d}}{\mathrm{d}t} \left( \frac{\mathrm{d}y}{\mathrm{d}x} \right)}{\frac{\mathrm{d}x}{\mathrm{d}T}}\]
+        So to find the second derivative we first find the first derivative, then the second, and divide by the derivative of \(x\) in terms of \(T\).
+    
+    \subsection{Example}
+        Find the second derivative of:
+        \begin{align*}
+            x = T^2 - 4 &&
+            y = T^3 - 3T
+        \end{align*}
+        So the first derivative is:
+        \[\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{3T^2 - 3}{2T}\]
+        To take the second derivative make sure you use the quotient rule:
+        \begin{align*}
+            \frac{\mathrm{d}}{\mathrm{d}T} \left( \frac{\mathrm{d}y}{ \mathrm{d}x} \right) &= \frac{6T \cdot 2T - 2 (3T^2 - 3)}{4T^2} \\
+            &= \frac{6T^2 + 6}{4T^2} \\
+            &= \frac{3T^2 + 3}{2T^2}
+        \end{align*}
+        Then you divide by the derivative of \(x\) to get the second derivative of the parametric equation:
+        \begin{align*}
+            \frac{\mathrm{d}^2 y}{\mathrm{d} x^2} &= \frac{\frac{3T^2 + 3}{2T^2}}{2T} \\
+            &= \frac{3T^2 + 3}{4T^3}
+        \end{align*}
+    
+    \subsection{Finding length of parametric curves}
+        Regarding the length of a curve:
+        \[L = \int_a^b \sqrt{1 + (f'(x))^2} \mathrm{d}x\]
+        In terms of a parametric equations, provided the part of the curve for which you are trying to find is "smooth" (no gaps, no sharp points),
+        and doesn't not intersect itself, then the length can be found with:
+        \[L = \int_a^b \sqrt{\left(\frac{\mathrm{d}x}{\mathrm{d}T}\right)^2 + \left(\frac{\mathrm{d}y}{\mathrm{d}T}\right)^2} \mathrm{d}T\]
+        Remember the bounds \(a\) and \(b\) are in terms of \(T\).
+    
+    \subsection{Example}
+        Find the length on the interval \(0 \leq T \leq 1\):
+        \begin{align*}
+            x = 2T^2 &&
+            y = 3T^3
+        \end{align*}
+        So plug in to the length equation:
+        \begin{align*}
+            L &= \int_a^b \sqrt{\left(\frac{\mathrm{d}x}{\mathrm{d}T}\right)^2 + \left(\frac{\mathrm{d}y}{\mathrm{d}T}\right)^2} \mathrm{d}T \\
+            && \text{Aside:} \\
+            && \frac{\mathrm{d}x}{\mathrm{d}T} &= 4T \\
+            && \frac{\mathrm{d}y}{\mathrm{d}T} &= 9T^2 \\
+            &= \int_0^1 \sqrt{(4T)^2 + (9T^2)^2} \, \mathrm{d}T \\
+            &= \int_0^1 \sqrt{16T^2 + 81T^4} \, \mathrm{d}T \\
+            &= \int_0^1 T \sqrt{16 + 81T^2} \, \mathrm{d}T \\
+            && \text{Let } u &= 16+ 81T^2 \\
+            && \mathrm{d}u &= 162T \, \mathrm{d}T \\
+            &= \frac{1}{162} \int \sqrt{u} \, \mathrm{d}u \\
+            &= \frac{1}{162} \left[ \frac{2}{3} u^{3/2}\right] \\
+            &= \frac{1}{243} \left[(16 + 81T^2)^{3/2} \right]_0^1 \\
+            L &= \frac{1}{243} \left[ 97 \sqrt{97} - 4 \sqrt{4}\right] \\
+        \end{align*}
+    
+    \subsection{Finding surface area of a parametric curve}
+        Recall the surface area of a curve:
+        \[S = \int_a^b 2 \pi f(x) \sqrt{1 + (f'(x)) ^2} \, \mathrm{d}x\]
+        In terms of parametric equations:
+        \begin{itemize}
+            \item Regarding the length of a curve rotated around the x-axis (integrated with respect to \(x\)):
+            \[S = \int_a^b 2 \pi y \sqrt{\left(\frac{\mathrm{d}x}{\mathrm{d}T}\right)^2 + \left(\frac{\mathrm{d}y}{\mathrm{d}T}\right)^2} \mathrm{d}T\]
+            Note: \(y\) here is the height of the curve must be in terms of \(T\).
+            \item Regarding the length of a curve rotated around the y-axis (integrating with respect to \(y\)):
+            \[S = \int_a^b 2 \pi x \sqrt{\left(\frac{\mathrm{d}x}{\mathrm{d}T}\right)^2 + \left(\frac{\mathrm{d}y}{\mathrm{d}T}\right)^2} \mathrm{d}T\]
+        \end{itemize}
 
 
 \end{document}
