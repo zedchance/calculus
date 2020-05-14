@@ -1906,5 +1906,272 @@
             \[S = \int_a^b 2 \pi x \sqrt{\left(\frac{\mathrm{d}x}{\mathrm{d}T}\right)^2 + \left(\frac{\mathrm{d}y}{\mathrm{d}T}\right)^2} \mathrm{d}T\]
         \end{itemize}
 
+\section{Polar coordinates}
+    Polar coordinates are another way to describe a curve. It takes two values in the form of \((r, \theta)\).
+    \(r\) is the distance from the origin to the point, and \(\theta\) is the angle between the polar axis and the curve.
+    Counter clockwise rotation is positive, and clockwise is negative.
+    \(r\) can be both positive and negative.
+    Lets convert this polar equation into a rectangular equation:
+    \[r = 2 \sin \theta\]
+    Remember:
+    \begin{align*}
+        r^2 = x^2 + y^2 &&
+        x = r \cos \theta &&
+        y = r \sin \theta
+    \end{align*}
+    So:
+    \begin{align*}
+        r^2 &= 2r \sin \theta \\
+        x^2 + y^2 &= 2r \sin \theta \\
+        x^2 + y^2 &= 2y
+    \end{align*}
+    Now its a rectangular equation, but we can massage the equation to be more familiar (by completing the square):
+    \[x^2 + y^2 - 2y = 0\]
+    \[x^2 + (y-1)^2 = 1\]
+    This is a circle centered at \((0, 1)\) with a radius of \(1\).
+    
+    \subsection{Polar symmetry}
+        For \(r = f(\theta)\):
+        \begin{itemize}
+            \item If \(f(\theta) = f(- \theta)\) then the curve is symmetric about the polar axis (x-axis).
+            \item If \(f(\pi - \theta) = f(\theta)\) then the curve is symmetric about \(\theta = \frac{\pi}{2}\) (y-axis).
+            \item If \(f(\theta + \pi) = - f(\theta)\) then the curve is symmetric about the pole (origin).
+        \end{itemize}
+        For example if we have:
+        \[r = 1 + \cos \theta\]
+        \[f(\theta) = 1 + \cos \theta\]
+        Lets check for symmetry:
+        \[f(- \theta) = 1 + \cos (- \theta)\]
+        Remember, \(\cos\) is an even function (symmetric about the y-axis), so:
+        \[\cos (\theta) = \cos (- \theta)\]
+        Therefore:
+        \[f(\theta) = f(-\theta)\]
+        So this is curve is symmetric about the polar axis.
+        Since this is symmetric about the polar axis, we can graph just the top half and get the bottom half for free.
+        This can make plotting some of these curves a lot easier, so make sure to look for symmetry in these equations.
+    
+    \subsection{Example}
+        Another example checking for symmetry before graphing:
+        \[r = 2 \cos 2 \theta\]
+        Lets check polar axis symmetry (remembering that \(\cos\) is an even function):
+        \[f(- \theta) = 2 \cos (- 2 \theta)\]
+        \[f(- \theta) = 2 \cos 2 \theta\]
+        So we have symmetry about the polar axis.
+        Lets check for symmetry about \(\frac{\pi}{2}\) (the y-axis):
+        \[f(\pi - \theta) = 2 \cos (2 \pi - 2 \theta)\]
+        We can simplify this with the identity:
+        \[\cos (a - b) = \cos a \cos b - \sin a \sin b\]
+        So:
+        \[= 2 \left[ \cos 2 \pi \cos 2 \theta - \sin 2 \pi \sin 2 \theta\right]\]
+        \[= 2 \cos 2 \theta\]
+        Since this equals our original function in terms of \(\theta\), that means the curve is also symmetric about \(\theta = \frac{\pi}{2}\) (the y-axis).
+        
+    \subsection{Example}
+        \[(x^2 + y^2)^2 = 4(x^2 - y^2)\]
+        This is going to be symmetric about the x-axis and the y-axis (both \(x\) and \(y\) are being squared).
+        We can utilize these:
+        \begin{align*}
+            r^2 = x^2 + y^2 &&
+            x = r \cos \theta &&
+            y = r \sin \theta
+        \end{align*} 
+        So:
+        \begin{align*}
+            (r^2)^2 &= 4 \left( (r \cos \theta) ^2 - (r \sin \theta)^2\right) \\
+            (r^2)^2 &= 4 r^2 (\cos^2 \theta - \sin^2 \theta) \\
+            r^4 &= 4r^2 (\cos 2 \theta) \\
+            r^2 &= 4 \cos 2 \theta \\
+            r &= 2 \sqrt{\cos 2 \theta}
+        \end{align*}
+        This is now a polar equation!
+        We just need to look at some symmetry and plug in some points to figure out what the curve is doing.
+        It is good to note that points greater than \(\frac{\pi}{2}\) is going to be undefined as it gives a negative under the radical.
+        
+    \subsection{Tangent lines of polar equations}
+        For \(x = r \cos \theta\) and \(y = r \sin \theta\):
+        \begin{align*}
+            \frac{\mathrm{d}y}{\mathrm{d}x} &= \frac{\frac{\mathrm{d}y}{\mathrm{d}\theta}}{\frac{\mathrm{d}x}{\mathrm{d}\theta}}
+        \end{align*}
+        Where:
+        \begin{align*}
+            \frac{\mathrm{d}y}{\mathrm{d}\theta} &= \frac{\mathrm{d}}{\mathrm{d}\theta} (r \sin \theta) \\
+            \frac{\mathrm{d}y}{\mathrm{d}\theta} &= \frac{\mathrm{d}r}{\mathrm{d}\theta} \cdot \sin \theta + r \cos \theta
+        \end{align*}
+        and similarly for \(x\):
+        \begin{align*}
+            \frac{\mathrm{d}x}{\mathrm{d}\theta} &= \frac{\mathrm{d}r}{\mathrm{d}\theta} \cdot \cos \theta - r \sin \theta
+        \end{align*} 
+        All together:
+        \begin{align*}
+            \frac{\mathrm{d}y}{\mathrm{d}x} &= \frac{\frac{\mathrm{d}r}{\mathrm{d}\theta} \cdot \sin \theta + r \cos \theta}{\frac{\mathrm{d}r}{\mathrm{d}\theta} \cdot \cos \theta - r \sin \theta}
+        \end{align*}
+        Horizontal tangent lines happen when the numerator, or the derivative of \(y\) with respect to \(\theta\), is 0.
+        \[\frac{\mathrm{d}y}{\mathrm{d}\theta} = 0\]
+        Vertical tangent lines happen when the denomenator, or the derivative of \(x\) with respect to \(\theta\), is 0.
+        \[\frac{\mathrm{d}x}{\mathrm{d}\theta} = 0\]
+    
+    \subsection{Example}
+        Find the slope of the tangent line at \(\theta = \frac{\pi}{6}\):
+        \[r = 1 + \cos \theta\]
+        First start off by deriving \(r\):
+        \[\frac{\mathrm{d}r}{\mathrm{d}\theta} = - \sin \theta\]
+        Plug it into our formula for deriving the polar equation shown in the last section:
+        \begin{align*}
+            \frac{\mathrm{d}y}{\mathrm{d}x} &= \frac{\frac{\mathrm{d}r}{\mathrm{d}\theta} \cdot \sin \theta + r \cos \theta}{\frac{\mathrm{d}r}{\mathrm{d}\theta} \cdot \cos \theta - r \sin \theta} \\
+            &= \frac{(- \sin \theta) \sin \theta + (1 + \cos \theta) \cos \theta}{(- \sin \theta) \cos \theta - (1 + \cos \theta) \sin \theta} \\
+            &= \frac{- \sin^2 \theta + \cos \theta + \cos^2 \theta}{- \sin \theta \cos \theta - \sin \theta - \sin \theta \cos \theta} \\
+            &= \frac{\cos^2 \theta - \sin^2 \theta + \cos \theta}{-2 \sin \theta \cos \theta - \sin \theta} \\
+            &= \frac{\cos 2 \theta + \cos \theta}{- \sin 2 \theta - \sin \theta} \\
+            &= - \frac{\cos 2 \theta + \cos \theta}{\sin 2 \theta + \sin \theta}
+        \end{align*} 
+        This represents the slope of the cardioid at a given angle \(\theta\).
+        Lets plug in our given \(\theta = \frac{\pi}{6}\):
+        \begin{align*}
+            \left[ \frac{\mathrm{d}y}{\mathrm{d}x} \right]_{\theta = (\frac{\pi}{6})} &= - \frac{\cos 2 (\frac{\pi}{6}) + \cos (\frac{\pi}{6})}{\sin 2 (\frac{\pi}{6}) + \sin (\frac{\pi}{6})} \\
+            &= - \frac{\frac{1}{2} + \frac{\sqrt{3}}{2}}{\frac{\sqrt{3}}{2} + \frac{1}{2}} \\
+            &= -1
+        \end{align*}
+        So the slope of the tangent line on the carioid is \(-1\) at the angle \(\theta = \frac{\pi}{6}\).
+
+\section{Calculus with polar equations}
+    \subsection{Area bound by a polar curve}
+        Let \(r\) be a function of \(\theta\):
+        \[r = f(\theta)\]
+        and define two angles
+        \begin{align*}
+            \theta = \alpha &&
+            \theta = \beta
+        \end{align*}
+        Remember the area of a sector:
+        \[A_{sector} = \frac{1}{2}r^2 \theta\]
+        We can find the area bound by the polar curve by integration:
+        \[A = \int_\alpha^\beta \frac{1}{2} r^2 \mathrm{d}\theta\]
+    
+    \subsection{Example}
+        Find the area bound by:
+        \[r^2 = 4 \cos 2 \theta\]
+        So we can solve for \(r\):
+        \[r = 2 \sqrt{\cos 2 \theta}\]
+        This is a previously worked example where we found that the function is symmetrical about both the polar axis and \(\theta = \frac{\pi}{2}\).
+        The curve is defined on the interval \(0 \leq \theta \leq \frac{\pi}{4}\).
+        These will be our bounds when we integrate.
+        This will give us a fourth of the area bound by the curve.
+        \begin{align*}
+            A &= 4 \int_0^{\frac{\pi}{4}} \frac{1}{2} \cdot 4 \cos 2 \theta \, \mathrm{d} \theta\\
+            &= 8 \int_0^{\frac{\pi}{4}} \cos 2 \theta \, \mathrm{d} \theta \\
+            &= 8 \left[ \frac{\sin 2 \theta}{2} \right]_0^{\frac{\pi}{4}} \\
+            &= 4 \left[ \sin 2 \theta \right]_0^{\frac{\pi}{4}} \\
+            &= 4 \left[ \sin (\frac{\pi}{2}) - \sin (0) \right] \\
+            &= 4
+        \end{align*}
+    
+    \subsection{Example}
+        Find the area bound by:
+        \[r = 1 + \cos \theta\]
+        This is a cardioid on its side (symmetrical by the polar axis).
+        We can choose to integrate it from \(0\) to \(\pi\) and multiply the answer by \(2\), or we can integrate from \(0\) to \(2 \pi\):
+        \begin{align*}
+            A &= 2 \int_0^\pi \frac{1}{2} \left[1 + \cos \theta\right]^2 \, \mathrm{d} \theta \\
+            &= \int_0^\pi 1 + 2 \cos \theta + \cos^2 \theta \, \mathrm{d} \theta \\
+            &= \int_0^\pi 1 + 2 \cos \theta + \frac{1}{2} (1 + \cos 2 \theta) \, \mathrm{d} \theta \\
+            &= \int_0^\pi 1 + 2 \cos \theta + \frac{1}{2} + \frac{1}{2} \cos 2 \theta \, \mathrm{d} \theta \\
+            &= \int_0^\pi \frac{3}{2} + 2 \cos \theta + \frac{1}{2} \cos 2 \theta \, \mathrm{d} \theta \\
+            &= \left[ \frac{3}{2} \theta + 2 \sin \theta + \frac{1}{4} \sin 2 \theta\right]_0^\pi \\
+            &= \left[ \frac{3 \pi}{2} + 2 \sin (\pi) + \frac{1}{4} \sin (2 \pi)\right] - \left[0 + 0 + 0\right] \\
+            &= \frac{3 \pi}{2}
+        \end{align*}
+        The area of our carioid is \(\frac{3 \pi}{2}\).
+    
+    \subsection{The area bound by two polar curves}
+        Lets define two polar curves on an interval:
+        \begin{align*}
+            r_1 = f(\theta) &&
+            r_2 = g(\theta) &&
+            \alpha \leq \theta \leq \beta
+        \end{align*}
+        The area between the curves can be defined as:
+        \begin{align*}
+            A &= \int_\alpha^\beta \frac{1}{2} r_1^2 \, \mathrm{d} \theta - \int_\alpha^\beta \frac{1}{2} r_2^2 \, \mathrm{d} \theta \\
+            &= \int_\alpha^\beta \frac{1}{2} (r_1^2 - r_2^2) \, \mathrm{d} \theta \\
+            &= \int_\alpha^\beta \frac{1}{2} \left( (f(\theta))^2 - (g(\theta))^2 \right) \, \mathrm{d} \theta
+        \end{align*}
+    
+    \subsection{Example}
+        Find the area between these polar curves:
+        \begin{align*}
+            r = 3 &&
+            r = 2 + 2 \cos \theta
+        \end{align*}
+        Note that \(r = 3\) is just a circle, and the other is a carioid.
+        Lets find the points of intersection so we can find the bounds of integration will be:
+        \begin{align*}
+            3 &= 2 + 2 \cos \theta \\
+            1 &= 2 \cos \theta \\
+            \cos \theta &= \frac{1}{2} \\
+            \theta &= \frac{\pi}{3}, \frac{5 \pi}{3}
+        \end{align*}
+        So our bounds will be from \(- \frac{\pi}{3}\) to \(\frac{\pi}{3}\).
+        \begin{align*}
+            A &= \int_{- \frac{\pi}{3}}^{\frac{\pi}{3}} \frac{1}{2} \left[(2+2 \cos \theta)^2 - 3^2\right] \, \mathrm{d} \theta \\
+        \end{align*}
+        Since the cardioid is symmetric about the polar axis, we can manipulate the bounds like:
+        \begin{align*}
+            &= 2 \int_{0}^{\frac{\pi}{3}} \frac{1}{2} \left[ 4 + 8 \cos \theta + 4 \cos^2 \theta - 9 \right] \, \mathrm{d} \theta \\
+            &= \int_{0}^{\frac{\pi}{3}} -5 + 8 \cos \theta + 4 \cos^2 \theta \, \mathrm{d} \theta \\
+            &= \int_{0}^{\frac{\pi}{3}} -5 + 8 \cos \theta + 4 \cdot \frac{1}{2} (1 + \cos 2 \theta) \, \mathrm{d} \theta \\
+            &= \int_{0}^{\frac{\pi}{3}} -5 + 8 \cos \theta + 2 + 2 \cos 2 \theta \, \mathrm{d} \theta \\
+            &= \int_{0}^{\frac{\pi}{3}} -3 + 8 \cos \theta + 2 \cos 2 \theta \, \mathrm{d} \theta \\
+            &= \left[-3 \theta + 8 \sin \theta + \frac{1}{2} \cdot 2 \sin 2 \theta \right]_0^{\frac{\pi}{3}} \\
+            &= \left[-3 \theta + 8 \sin \theta + \sin 2 \theta \right]_0^{\frac{\pi}{3}} \\
+            &= \left[ -\pi + 8 \sin (\frac{\pi}{3}) + \sin (\frac{2 \pi}{3})\right] - \left[ 0 + 0 + 0 \right] \\
+            &= - \pi + \frac{8 \sqrt{3}}{2} + \frac{\sqrt{3}}{2} \\
+            &= \frac{9 \sqrt{3}}{2} - \pi
+        \end{align*}
+        
+    \subsection{Length of a polar curve}
+        We can find the length of a polar curve by integrating:
+        \[A = \int_\alpha^\beta \sqrt{\left(\frac{\mathrm{d}r}{\mathrm{d}\theta}\right)^2 + r^2} \, \mathrm{d} \theta\]
+    
+    \subsection{Surface area of a revolved polar curve}
+        We can find the surface area of a polar curve rotated about the polar axis by integrating:
+        \[S = 2 \pi \int_\alpha^\beta r \sin \theta \cdot \sqrt{\left(\frac{\mathrm{d}r}{\mathrm{d}\theta}\right)^2 + r^2} \, \mathrm{d} \theta\]
+        Remember that \(y = r \sin \theta\), this is the height of our disk.
+        To find the surface area of a polar curve rotated about the axis \(\theta = \frac{\pi}{2}\):
+        \[S = 2 \pi \int_\alpha^\beta r \cos \theta \cdot \sqrt{\left(\frac{\mathrm{d}r}{\mathrm{d}\theta}\right)^2 + r^2} \, \mathrm{d} \theta\]
+    
+    \subsection{Finding the intersection of two polar curves}
+        For example lets say we have two polar curves defined as:
+        \begin{align*}
+            r = \cos \theta &&
+            r = \cos 2 \theta
+        \end{align*}
+        Lets set these equal to each other to try to find the intersection:
+        \begin{align*}
+            \cos \theta &= \cos 2 \theta \\
+            \cos \theta &= 2 \cos^2 \theta - 1 \\
+            0 &= 2 \cos^2 \theta - \cos \theta - 1 \\
+            0 &= (2 \cos \theta + 1)(\cos \theta - 1) \\
+            2 \cos \theta + 1 = 0 &&
+            \cos \theta - 1 = 0 \\
+            \cos \theta = - \frac{1}{2} &&
+            \cos \theta = 1 \\
+            \theta = \frac{2 \pi}{3}, \frac{4 \pi}{3} &&
+            \theta = 0 \\
+            \text{So: } r = - \frac{1}{2} &&
+            \text{So: } r = 1 \\
+        \end{align*}
+        Remember polar points are in the form \((r, \theta)\), so we have the points:
+        \begin{align*}
+            (- \frac{1}{2},\frac{2 \pi}{3}), (- \frac{1}{2},\frac{4 \pi}{3}) &&
+            (1,0)
+        \end{align*}
+        Whats really interesting about these intersections is that they happen at the same time. 
+        By plugging in \(\theta = \frac{\pi}{2}\) or \(\theta = \frac{3 \pi}{2}\) into the first equation we can see we get \(r = 0\).
+        Similarly by plugging in \(\theta = \frac{\pi}{4}\) or \(\theta = \frac{3\pi}{4}\) we also get \(r = 0\). 
+        So these curves both pass thru the origin, but it didn't show up when we set them equal to each other.
+        The polar curves pass thru the origin at different times.
+        So we can say an intersection also happens at:
+        \[r = 0\]
+
 
 \end{document}
